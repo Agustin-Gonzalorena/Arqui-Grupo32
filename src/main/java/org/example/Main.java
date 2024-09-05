@@ -4,16 +4,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.example.entities.Cliente;
-import org.example.entities.Factura;
 import org.example.entitiesDaos.ClienteDao;
-import org.example.entitiesDaos.FacturaDao;
-import org.example.mysqlDB.ClienteDaoMysql;
-import org.example.mysqlDB.CreateTablesMysql;
-import org.example.mysqlDB.FactoryMysql;
-import org.example.mysqlDB.FacturaDaoMysql;
+
 
 import java.io.FileReader;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {

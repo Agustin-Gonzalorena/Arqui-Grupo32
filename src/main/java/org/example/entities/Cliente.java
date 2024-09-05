@@ -1,7 +1,5 @@
 package org.example.entities;
 
-import java.util.List;
-
 public class Cliente {
     private int idCliente;
     private String nombre;
@@ -35,14 +33,6 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
     }
 
     @Override
