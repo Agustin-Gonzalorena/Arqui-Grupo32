@@ -14,6 +14,10 @@ public class Producto {
         return idProducto;
     }
 
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
     public String getNombre() {
         return nombre;
     }
