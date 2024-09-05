@@ -30,6 +30,10 @@ public class Producto {
         this.valor = valor;
     }
 
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +

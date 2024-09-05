@@ -37,14 +37,6 @@ public class Cliente {
         this.email = email;
     }
 
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
-    }
-
     @Override
     public String toString() {
         return "Cliente{" +
