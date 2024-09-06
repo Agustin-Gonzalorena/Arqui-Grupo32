@@ -7,6 +7,7 @@ import java.util.List;
 public interface ClienteDao {
     void createTable();
 
+
     List<Cliente> getAll();
 
     Cliente getById(int id);
