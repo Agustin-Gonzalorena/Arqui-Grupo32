@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FacturaDao {
     void createTable();
+    boolean save(Factura factura);
     void commit();
     void closeConnection();
-    boolean save(Factura factura);
 }

@@ -22,19 +22,6 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDao {
         }
         return instance;
     }
-    @Override
-    public void commit() {
-        try {
-            conn.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void closeConnection() {
-        ConnectionManagerMysql.getInstance().closeConnection();
-    }
 
     @Override
     public void createTable() {
@@ -71,5 +58,19 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDao {
             System.out.println("Error al guardar el producto asociado a la factura.");
             return false;
         }
+    }
+
+    @Override
+    public void commit() {
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void closeConnection() {
+        ConnectionManagerMysql.getInstance().closeConnection();
     }
 }

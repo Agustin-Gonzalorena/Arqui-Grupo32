@@ -1,10 +1,10 @@
-package org.example.mysqlDB;
+package org.example;
 
-import org.example.DaoFactory;
 import org.example.entitiesDaos.ClienteDao;
 import org.example.entitiesDaos.FacturaDao;
 import org.example.entitiesDaos.Factura_ProductoDao;
 import org.example.entitiesDaos.ProductoDao;
+import org.example.mysqlDB.*;
 
 public class FactoryMysql extends DaoFactory {
     public void createTable() {

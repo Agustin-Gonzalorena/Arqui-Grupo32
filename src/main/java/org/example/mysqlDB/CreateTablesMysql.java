@@ -55,7 +55,7 @@ public class CreateTablesMysql {
             // Ejecuta la creación de la clave foránea Factura_Producto -> Producto
             stmt.execute(facturaProductoProducto);
 
-            System.out.println("Claves foráneas creadas exitosamente.");
+            //System.out.println("Claves foráneas creadas exitosamente.");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al crear las claves foráneas.");

@@ -39,16 +39,6 @@ public class ClienteDaoMysql implements ClienteDao {
     }
 
     @Override
-    public void commit() {
-        try {
-            conn.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
     public boolean save(Cliente cliente) {
         String sql = "INSERT INTO cliente (nombre, email) VALUES (?,?)";
         try {
@@ -57,17 +47,11 @@ public class ClienteDaoMysql implements ClienteDao {
             ps.setString(2, cliente.getEmail());
             ps.execute();
             ps.close();
-            conn.commit();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-    }
-
-    @Override
-    public void closeConnection() {
-        ConnectionManagerMysql.getInstance().closeConnection();
     }
 
     @Override
@@ -98,7 +82,18 @@ public class ClienteDaoMysql implements ClienteDao {
         return clientesFacturados;
     }
 
-
+    @Override
+    public void commit() {
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void closeConnection() {
+        ConnectionManagerMysql.getInstance().closeConnection();
+    }
 
 }
 

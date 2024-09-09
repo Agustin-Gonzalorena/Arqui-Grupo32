@@ -36,14 +36,7 @@ public class ProductoDaoMysql implements ProductoDao {
             throw new RuntimeException(e);
         }
     }
-    @Override
-    public void commit() {
-        try {
-            conn.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+
     @Override
     public boolean save(Producto producto) {
         String consulta="INSERT INTO producto (nombre, valor) VALUES(?,?)";
@@ -54,7 +47,6 @@ public class ProductoDaoMysql implements ProductoDao {
             ps.setFloat(2,producto.getValor());
             ps.executeUpdate();
             ps.close();
-            //conn.commit();
             return true;
 
         } catch (SQLException e) {
@@ -88,6 +80,14 @@ public class ProductoDaoMysql implements ProductoDao {
         return "No se encontró el producto con mayor recaudación.";
     }
 
+    @Override
+    public void commit() {
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void closeConnection() {

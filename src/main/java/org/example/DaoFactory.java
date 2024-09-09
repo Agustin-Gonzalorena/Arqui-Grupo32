@@ -4,7 +4,6 @@ import org.example.entitiesDaos.ClienteDao;
 import org.example.entitiesDaos.FacturaDao;
 import org.example.entitiesDaos.Factura_ProductoDao;
 import org.example.entitiesDaos.ProductoDao;
-import org.example.mysqlDB.FactoryMysql;
 
 public abstract class DaoFactory {
     public static final int MYSQL_JDBC=1;

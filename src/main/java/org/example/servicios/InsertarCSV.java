@@ -20,19 +20,24 @@ public class InsertarCSV {
     private static final String FILE_NAME_FACTURA = "./src/main/resources/csvDatos/facturas.csv";
     private static final String FILE_NAME_FACTURA_PRODUCTO = "./src/main/resources/csvDatos/facturas-productos.csv";
     private static final String FILE_NAME_PRODUCTO = "./src/main/resources/csvDatos/productos.csv";
+
     private CSVParser parserCliente;
     private CSVParser parserFactura;
     private CSVParser parserFacturaProducto;
     private CSVParser parserProducto;
+
     private ClienteDaoMysql clienteDaoMysql;
     private FacturaDaoMysql facturaDaoMysql;
     private ProductoDaoMysql productoDaoMysql;
     private Factura_ProductoDaoMysql facturaProductoDaoMysql;
+
     public InsertarCSV(){
+        //se leen los csv
         parserCliente = lector(FILE_NAME_CLIENTE);
         parserFactura = lector(FILE_NAME_FACTURA);
         parserFacturaProducto = lector(FILE_NAME_FACTURA_PRODUCTO);
         parserProducto = lector(FILE_NAME_PRODUCTO);
+
         clienteDaoMysql = ClienteDaoMysql.getInstance();
         facturaDaoMysql = FacturaDaoMysql.getInstance();
         productoDaoMysql = ProductoDaoMysql.getInstance();
@@ -41,23 +46,28 @@ public class InsertarCSV {
     }
     public void insertar(){
         try {
+            //clientes
             for(CSVRecord c : parserCliente){
                 Cliente c1 = new Cliente(c.get("nombre"), c.get("email"));
                 clienteDaoMysql.save(c1);
             }
+            //facturas
             for(CSVRecord f : parserFactura){
                 Factura f1 = new Factura(Integer.parseInt(f.get("idCliente")));
                 facturaDaoMysql.save(f1);
             }
+            //productos
             for (CSVRecord p : parserProducto){
                 Producto p1 = new Producto(p.get("nombre"), Float.parseFloat(p.get("valor")));
                 productoDaoMysql.save(p1);
             }
+            //factura_productos
             for(CSVRecord fp : parserFacturaProducto){
                 Factura_Producto fp1 = new Factura_Producto(Integer.parseInt(fp.get("idFactura")), Integer.parseInt(fp.get("idProducto")), Integer.parseInt(fp.get("cantidad")));
                 facturaProductoDaoMysql.save(fp1);
 
             }
+
             clienteDaoMysql.commit();
             facturaDaoMysql.commit();
             productoDaoMysql.commit();
