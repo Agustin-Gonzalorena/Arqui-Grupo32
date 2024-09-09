@@ -8,9 +8,9 @@ public class ConnectionManagerMysql {
     private static ConnectionManagerMysql instance;
     private Connection conn;
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/person?allowPublicKeyRetrieval=true&useSSL=false";
-    private static final String USER = "root";
-    private static final String PASSWORD = "arquitectura";
+    private static final String URL = "jdbc:mysql://localhost:3306/probando";
+    private static final String USER = "user";
+    private static final String PASSWORD = "userpassword";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
     private ConnectionManagerMysql() {
