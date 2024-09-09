@@ -2,6 +2,8 @@ package org.example;
 
 import org.example.entitiesDaos.ClienteDao;
 import org.example.entitiesDaos.FacturaDao;
+import org.example.entitiesDaos.Factura_ProductoDao;
+import org.example.entitiesDaos.ProductoDao;
 import org.example.mysqlDB.FactoryMysql;
 
 public abstract class DaoFactory {
@@ -11,6 +13,8 @@ public abstract class DaoFactory {
 
     public abstract ClienteDao getClienteDao();
     public abstract FacturaDao getFacturaDao();
+    public abstract Factura_ProductoDao getFactura_ProductoDao();
+    public abstract ProductoDao getProductoDao();
     public abstract void createTable();
 
     public static DaoFactory getDaoFactory(int witchFactory) {

@@ -1,7 +1,5 @@
 package org.example.mysqlDB;
 
-import org.example.entitiesDaos.Factura_ProductoDAO;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,17 +32,17 @@ public class CreateTablesMysql {
 
         // Clave foránea para la relación Factura -> Cliente
         String facturaCliente = "ALTER TABLE factura ADD CONSTRAINT " +
-                "factura_cliente FOREIGN KEY (Cliente_IdCliente) " +
-                "REFERENCES cliente (IdCliente);";
+                "factura_cliente FOREIGN KEY (idCliente) " +
+                "REFERENCES cliente (idCliente);";
 
         // Clave foránea para la relación Factura_Producto -> Factura
-        String facturaProductoFactura = "ALTER TABLE Factura_Producto ADD CONSTRAINT " +
-                "factura_producto_factura FOREIGN KEY (Factura_idFactura) " +
+        String facturaProductoFactura = "ALTER TABLE factura_producto ADD CONSTRAINT " +
+                "factura_producto_factura FOREIGN KEY factura_producto_factura (factura_idFactura) " +
                 "REFERENCES factura (idFactura);";
 
         // Clave foránea para la relación Factura_Producto -> Producto
-        String facturaProductoProducto = "ALTER TABLE Factura_Producto ADD CONSTRAINT " +
-                "factura_producto_producto FOREIGN KEY (Producto_idProducto) " +
+        String facturaProductoProducto = "ALTER TABLE factura_producto ADD CONSTRAINT " +
+                "factura_producto_producto FOREIGN KEY factura_producto_producto (producto_idProducto) " +
                 "REFERENCES producto (idProducto);";
 
         try (Statement stmt = conn.createStatement()) {

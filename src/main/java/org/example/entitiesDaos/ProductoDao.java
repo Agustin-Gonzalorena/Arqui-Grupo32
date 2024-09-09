@@ -6,14 +6,8 @@ import java.util.List;
 
 public interface ProductoDao {
     void createTable();
-
-    List<Producto> getAll();
-
-    Producto getById(int id);
-
+    void commit();
     boolean save(Producto producto);
-
     void closeConnection();
-
     String getProductoMayorRecaudacion();
 }

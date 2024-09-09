@@ -12,7 +12,6 @@ public class ClienteDaoMysql implements ClienteDao {
     private Connection conn;
 
     private ClienteDaoMysql() {
-
         this.conn = ConnectionManagerMysql.getInstance().getConnection();
     }
 
@@ -40,28 +39,14 @@ public class ClienteDaoMysql implements ClienteDao {
     }
 
     @Override
-    public List<Cliente> getAll() {
-        return List.of();
-    }
-
-    @Override
-    public Cliente getById(int id) {
-        String sql = "SELECT * FROM cliente c WHERE c.idCliente =?;";
+    public void commit() {
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                Cliente c = new Cliente(rs.getString(2), rs.getString(3));
-                c.setIdCliente(id);
-                return c;
-            }
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
     }
+
 
     @Override
     public boolean save(Cliente cliente) {
@@ -89,10 +74,10 @@ public class ClienteDaoMysql implements ClienteDao {
     public List<String> getClientesPorMayorFacturacion() {
         String query = """
             SELECT c.nombre, SUM(fp.cantidad * p.valor) AS totalFacturado
-            FROM Cliente c
-            JOIN Factura f ON c.idCliente = f.idCliente
-            JOIN Factura_Producto fp ON f.idFactura = fp.idFactura
-            JOIN Producto p ON fp.idProducto = p.idProducto
+            FROM cliente c
+            JOIN factura f ON c.idCliente = f.idCliente
+            JOIN factura_producto fp ON f.idFactura = fp.factura_idFactura
+            JOIN producto p ON fp.producto_idProducto = p.idProducto
             GROUP BY c.idCliente, c.nombre
             ORDER BY totalFacturado DESC;
         """;

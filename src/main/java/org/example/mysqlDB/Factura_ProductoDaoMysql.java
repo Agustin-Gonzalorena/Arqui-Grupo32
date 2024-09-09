@@ -1,15 +1,14 @@
 package org.example.mysqlDB;
 
-import org.example.entities.Factura;
 import org.example.entities.Factura_Producto;
-import org.example.entitiesDaos.Factura_ProductoDAO;
+import org.example.entitiesDaos.Factura_ProductoDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Factura_ProductoDaoMysql implements Factura_ProductoDAO {
+public class Factura_ProductoDaoMysql implements Factura_ProductoDao {
     private static Factura_ProductoDaoMysql instance;
     private Connection conn;
 
@@ -23,14 +22,27 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDAO {
         }
         return instance;
     }
+    @Override
+    public void commit() {
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void closeConnection() {
+        ConnectionManagerMysql.getInstance().closeConnection();
+    }
 
     @Override
     public void createTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS Factura_Producto (" +
-                "Factura_idFactura INT NOT NULL, " +
-                "Producto_idProducto INT NOT NULL, " +
+        String sql = "CREATE TABLE IF NOT EXISTS factura_producto (" +
+                "factura_idFactura INT NOT NULL, " +
+                "producto_idProducto INT NOT NULL, " +
                 "cantidad INT NOT NULL, " +
-                "PRIMARY KEY (Factura_idFactura, Producto_idProducto)" +
+                "PRIMARY KEY (factura_idFactura, producto_idProducto)" +
                 ");";
 
         try (Statement stmt = conn.createStatement()) {
@@ -44,7 +56,7 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDAO {
 
     @Override
     public boolean save(Factura_Producto facturaProducto) {
-        String sql = "INSERT INTO Factura_Producto (Factura_idFactura, Producto_idProducto, cantidad) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO factura_producto (factura_idFactura, producto_idProducto, cantidad) VALUES (?, ?, ?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, facturaProducto.getIdFactura());
@@ -52,7 +64,7 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDAO {
             pstmt.setInt(3, facturaProducto.getCantidad());
             pstmt.executeUpdate();
 
-            System.out.println("Producto asociado a la factura guardado exitosamente.");
+            //System.out.println("Producto asociado a la factura guardado exitosamente.");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

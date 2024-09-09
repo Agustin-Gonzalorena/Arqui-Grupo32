@@ -23,6 +23,18 @@ public class FacturaDaoMysql implements FacturaDao {
     }
 
     @Override
+    public void commit() {
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void closeConnection() {
+        ConnectionManagerMysql.getInstance().closeConnection();
+    }
+    @Override
     public void createTable() {
         String sql = "CREATE TABLE factura ("
                 + "idFactura INT NOT NULL AUTO_INCREMENT,"
@@ -37,34 +49,6 @@ public class FacturaDaoMysql implements FacturaDao {
         }
     }
 
-    @Override
-    public List<Factura> getAll() {
-        return List.of();
-    }
-
-    @Override
-    public Factura getById(int id) {
-        return null;
-    }
-
-    public List<Factura> getByCliente(int idCliente) {
-        List<Factura> facturas = new ArrayList<>();
-        String sql = "SELECT * FROM factura WHERE idCliente = ?";
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, idCliente);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Factura f = new Factura(idCliente);
-                f.setIdFactura(rs.getInt("idFactura"));
-                facturas.add(f);
-            }
-            return facturas;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return facturas;
-    }
 
     @Override
     public boolean save(Factura factura) {
