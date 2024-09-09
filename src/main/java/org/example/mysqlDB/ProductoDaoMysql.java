@@ -3,10 +3,7 @@ package org.example.mysqlDB;
 import org.example.entities.Producto;
 import org.example.entitiesDaos.ProductoDao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class ProductoDaoMysql implements ProductoDao {
@@ -83,6 +80,32 @@ public class ProductoDaoMysql implements ProductoDao {
         }
         return false;
     }
+
+
+    public String getProductoMayorRecaudacion() {
+        String query = """
+            SELECT p.nombre, SUM(fp.cantidad * p.valor) AS recaudacion
+            FROM Producto p
+            JOIN Factura_Producto fp ON p.idProducto = fp.idProducto
+            GROUP BY p.idProducto, p.nombre
+            ORDER BY recaudacion DESC
+            LIMIT 1;
+        """;
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+
+            if (rs.next()) {
+                String productoNombre = rs.getString("nombre");
+                double recaudacion = rs.getDouble("recaudacion");
+                return "Producto con mayor recaudación: " + productoNombre + " - Recaudación: " + recaudacion;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "No se encontró el producto con mayor recaudación.";
+    }
+
 
     @Override
     public void closeConnection() {

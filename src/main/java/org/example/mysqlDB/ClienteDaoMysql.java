@@ -4,6 +4,7 @@ import org.example.entities.Cliente;
 import org.example.entitiesDaos.ClienteDao;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDaoMysql implements ClienteDao {
@@ -11,6 +12,7 @@ public class ClienteDaoMysql implements ClienteDao {
     private Connection conn;
 
     private ClienteDaoMysql() {
+
         this.conn = ConnectionManagerMysql.getInstance().getConnection();
     }
 
@@ -82,4 +84,36 @@ public class ClienteDaoMysql implements ClienteDao {
     public void closeConnection() {
         ConnectionManagerMysql.getInstance().closeConnection();
     }
+
+    @Override
+    public List<String> getClientesPorMayorFacturacion() {
+        String query = """
+            SELECT c.nombre, SUM(fp.cantidad * p.valor) AS totalFacturado
+            FROM Cliente c
+            JOIN Factura f ON c.idCliente = f.idCliente
+            JOIN Factura_Producto fp ON f.idFactura = fp.idFactura
+            JOIN Producto p ON fp.idProducto = p.idProducto
+            GROUP BY c.idCliente, c.nombre
+            ORDER BY totalFacturado DESC;
+        """;
+
+        List<String> clientesFacturados = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                String clienteNombre = rs.getString("nombre");
+                double totalFacturado = rs.getDouble("totalFacturado");
+                clientesFacturados.add("Cliente: " + clienteNombre + " - Total Facturado: " + totalFacturado);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clientesFacturados;
+    }
+
+
+
 }
+

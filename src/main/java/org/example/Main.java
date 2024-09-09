@@ -7,10 +7,7 @@ import org.example.entities.Cliente;
 import org.example.entities.Factura;
 import org.example.entitiesDaos.ClienteDao;
 import org.example.entitiesDaos.FacturaDao;
-import org.example.mysqlDB.ClienteDaoMysql;
-import org.example.mysqlDB.CreateTablesMysql;
-import org.example.mysqlDB.FactoryMysql;
-import org.example.mysqlDB.FacturaDaoMysql;
+import org.example.mysqlDB.*;
 
 import java.io.FileReader;
 import java.util.List;
@@ -46,6 +43,19 @@ public class Main {
 
         Factura f = new Factura(2);
         f1.save(f);*/
+
+        //ProductoDaoMysql productoDAO = new ProductoDaoMysql();
+        //ClienteDaoMysql clienteDAO = new ClienteDaoMysql();
+        String productoMayorRecaudacion = productoDAO.getProductoMayorRecaudacion();
+
+        List<String> clientesPorMayorFacturacion = clienteDAO.getClientesPorMayorFacturacion();
+        System.out.println(productoMayorRecaudacion);
+
+        System.out.println("Clientes ordenados por mayor facturación:");
+        for (String cliente : clientesPorMayorFacturacion) {
+            System.out.println(cliente);
+        }
+
 
 
         DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL_JDBC);

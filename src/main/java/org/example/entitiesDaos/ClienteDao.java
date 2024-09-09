@@ -15,4 +15,5 @@ public interface ClienteDao {
     boolean save(Cliente cliente);
 
     void closeConnection();
+    List<String> getClientesPorMayorFacturacion();
 }

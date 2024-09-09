@@ -14,4 +14,6 @@ public interface ProductoDao {
     boolean save(Producto producto);
 
     void closeConnection();
+
+    String getProductoMayorRecaudacion();
 }
