@@ -55,32 +55,35 @@ public class ClienteDaoMysql implements ClienteDao {
     }
 
     @Override
-    public List<String> getClientesPorMayorFacturacion() {
+    public List<Cliente> getClientesPorMayorFacturacion() {
         String query = """
-            SELECT c.nombre, SUM(fp.cantidad * p.valor) AS totalFacturado
-            FROM cliente c
-            JOIN factura f ON c.idCliente = f.idCliente
-            JOIN factura_producto fp ON f.idFactura = fp.factura_idFactura
-            JOIN producto p ON fp.producto_idProducto = p.idProducto
-            GROUP BY c.idCliente, c.nombre
+            SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad * p.valor) AS totalFacturado
+            FROM Cliente c
+            JOIN Factura f ON c.idCliente = f.idCliente
+            JOIN Factura_Producto fp ON f.idFactura = fp.idFactura
+            JOIN Producto p ON fp.idProducto = p.idProducto
+            GROUP BY c.idCliente, c.nombre, c.email
             ORDER BY totalFacturado DESC;
         """;
 
-        List<String> clientesFacturados = new ArrayList<>();
+        List<Cliente> clientesFacturados = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                String clienteNombre = rs.getString("nombre");
-                double totalFacturado = rs.getDouble("totalFacturado");
-                clientesFacturados.add("Cliente: " + clienteNombre + " - Total Facturado: " + totalFacturado);
+                String nombre = rs.getString("nombre");
+                String email = rs.getString("email");
+
+                Cliente cliente = new Cliente( nombre, email);
+                clientesFacturados.add(cliente);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return clientesFacturados;
     }
+
 
     @Override
     public void commit() {

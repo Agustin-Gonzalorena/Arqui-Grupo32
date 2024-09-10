@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductoDao {
     void createTable();
     boolean save(Producto producto);
-    String getProductoMayorRecaudacion();
+    Producto getProductoMayorRecaudacion();
     void commit();
     void closeConnection();
 }

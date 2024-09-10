@@ -7,7 +7,7 @@ import java.util.List;
 public interface ClienteDao {
     void createTable();
     boolean save(Cliente cliente);
-    List<String> getClientesPorMayorFacturacion();
+    List<Cliente> getClientesPorMayorFacturacion();
     void commit();
     void closeConnection();
 }

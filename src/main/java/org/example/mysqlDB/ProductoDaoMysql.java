@@ -56,12 +56,12 @@ public class ProductoDaoMysql implements ProductoDao {
     }
 
 
-    public String getProductoMayorRecaudacion() {
+    public Producto getProductoMayorRecaudacion() {
         String query = """
-            SELECT p.nombre, SUM(fp.cantidad * p.valor) AS recaudacion
-            FROM producto p
-            JOIN factura_producto fp ON p.idProducto = fp.producto_idProducto
-            GROUP BY p.idProducto, p.nombre
+            SELECT p.idProducto, p.nombre, p.valor, SUM(fp.cantidad * p.valor) AS recaudacion
+            FROM Producto p
+            JOIN Factura_Producto fp ON p.idProducto = fp.idProducto
+            GROUP BY p.idProducto, p.nombre, p.valor
             ORDER BY recaudacion DESC
             LIMIT 1;
         """;
@@ -70,14 +70,15 @@ public class ProductoDaoMysql implements ProductoDao {
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs.next()) {
-                String productoNombre = rs.getString("nombre");
-                double recaudacion = rs.getDouble("recaudacion");
-                return "Producto con mayor recaudación: " + productoNombre + " - Recaudación: " + recaudacion;
+                String nombre = rs.getString("nombre");
+                float valor = rs.getFloat("valor");
+
+                return new Producto(nombre, valor);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "No se encontró el producto con mayor recaudación.";
+        return null;  // Si no se encuentra ningún producto
     }
 
     @Override
