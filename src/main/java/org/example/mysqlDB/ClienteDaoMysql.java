@@ -58,10 +58,10 @@ public class ClienteDaoMysql implements ClienteDao {
     public List<Cliente> getClientesPorMayorFacturacion() {
         String query = """
             SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad * p.valor) AS totalFacturado
-            FROM Cliente c
-            JOIN Factura f ON c.idCliente = f.idCliente
-            JOIN Factura_Producto fp ON f.idFactura = fp.idFactura
-            JOIN Producto p ON fp.idProducto = p.idProducto
+            FROM cliente c
+            JOIN factura f ON c.idCliente = f.idCliente
+            JOIN factura_producto fp ON f.idFactura = fp.factura_idFactura
+            JOIN producto p ON fp.producto_idProducto = p.idProducto
             GROUP BY c.idCliente, c.nombre, c.email
             ORDER BY totalFacturado DESC;
         """;
@@ -76,6 +76,7 @@ public class ClienteDaoMysql implements ClienteDao {
                 String email = rs.getString("email");
 
                 Cliente cliente = new Cliente( nombre, email);
+                cliente.setIdCliente(rs.getInt("idCliente"));
                 clientesFacturados.add(cliente);
             }
         } catch (SQLException e) {

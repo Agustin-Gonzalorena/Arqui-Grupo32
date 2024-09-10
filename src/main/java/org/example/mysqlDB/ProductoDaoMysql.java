@@ -59,8 +59,8 @@ public class ProductoDaoMysql implements ProductoDao {
     public Producto getProductoMayorRecaudacion() {
         String query = """
             SELECT p.idProducto, p.nombre, p.valor, SUM(fp.cantidad * p.valor) AS recaudacion
-            FROM Producto p
-            JOIN Factura_Producto fp ON p.idProducto = fp.idProducto
+            FROM producto p
+            JOIN factura_producto fp ON p.idProducto = fp.producto_idProducto
             GROUP BY p.idProducto, p.nombre, p.valor
             ORDER BY recaudacion DESC
             LIMIT 1;
@@ -73,7 +73,9 @@ public class ProductoDaoMysql implements ProductoDao {
                 String nombre = rs.getString("nombre");
                 float valor = rs.getFloat("valor");
 
-                return new Producto(nombre, valor);
+                Producto p = new Producto(nombre, valor);
+                p.setIdProducto(rs.getInt("idProducto"));
+                return p;
             }
         } catch (SQLException e) {
             e.printStackTrace();

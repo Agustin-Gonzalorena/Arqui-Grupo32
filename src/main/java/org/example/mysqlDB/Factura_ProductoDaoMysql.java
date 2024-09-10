@@ -34,7 +34,7 @@ public class Factura_ProductoDaoMysql implements Factura_ProductoDao {
 
         try (Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
-            System.out.println("Tabla Factura_Producto creada sin claves foráneas.");
+            //System.out.println("Tabla Factura_Producto creada sin claves foráneas.");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error al crear la tabla Factura_Producto.");
