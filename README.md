@@ -1,4 +1,4 @@
-# Arquitecturas Web TUDAI
+# Arquitectura Web TUDAI
 ## Grupo 32
 
 ### Integrantes:
