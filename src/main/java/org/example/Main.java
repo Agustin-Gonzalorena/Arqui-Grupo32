@@ -13,7 +13,7 @@ public class Main {
         DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL_JDBC);
 
         //Creacion de tablas -ejercicio 1
-        /*daoFactory.createTable();
+        daoFactory.createTable();
         System.out.println("-----------------------------");
         System.out.println("Tablas creadas");
 
@@ -21,7 +21,7 @@ public class Main {
         InsertarCSV insertService = new InsertarCSV();
         insertService.insertar();
         System.out.println("-----------------------------");
-        System.out.println("Se insertaron los datos");*/
+        System.out.println("Se insertaron los datos");
 
         // Se recupera el producto que mas recaudo -ejercicio 3
         ProductoDao p = daoFactory.getProductoDao();
