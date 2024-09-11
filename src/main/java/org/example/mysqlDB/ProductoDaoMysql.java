@@ -1,10 +1,10 @@
 package org.example.mysqlDB;
 
 import org.example.entities.Producto;
+import org.example.entities.dtos.ProductoConRecaudacionDTO;
 import org.example.entitiesDaos.ProductoDao;
 
 import java.sql.*;
-import java.util.List;
 
 public class ProductoDaoMysql implements ProductoDao {
     private static ProductoDaoMysql instance;
@@ -56,7 +56,7 @@ public class ProductoDaoMysql implements ProductoDao {
     }
 
 
-    public Producto getProductoMayorRecaudacion() {
+    public ProductoConRecaudacionDTO getProductoMayorRecaudacion() {
         String query = """
             SELECT p.idProducto, p.nombre, p.valor, SUM(fp.cantidad * p.valor) AS recaudacion
             FROM producto p
@@ -70,12 +70,13 @@ public class ProductoDaoMysql implements ProductoDao {
             ResultSet rs = stmt.executeQuery(query);
 
             if (rs.next()) {
+                int idProducto = rs.getInt("idProducto");
                 String nombre = rs.getString("nombre");
                 float valor = rs.getFloat("valor");
+                int recaudacion = rs.getInt("recaudacion");
+                ProductoConRecaudacionDTO p1 = new ProductoConRecaudacionDTO(idProducto, nombre, valor, recaudacion);
 
-                Producto p = new Producto(nombre, valor);
-                p.setIdProducto(rs.getInt("idProducto"));
-                return p;
+                return p1;
             }
         } catch (SQLException e) {
             e.printStackTrace();

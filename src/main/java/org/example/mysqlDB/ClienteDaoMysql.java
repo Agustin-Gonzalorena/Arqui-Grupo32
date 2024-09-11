@@ -1,6 +1,7 @@
 package org.example.mysqlDB;
 
 import org.example.entities.Cliente;
+import org.example.entities.dtos.ClienteConFacturacionDTO;
 import org.example.entitiesDaos.ClienteDao;
 
 import java.sql.*;
@@ -55,7 +56,7 @@ public class ClienteDaoMysql implements ClienteDao {
     }
 
     @Override
-    public List<Cliente> getClientesPorMayorFacturacion() {
+    public List<ClienteConFacturacionDTO> getClientesPorMayorFacturacion() {
         String query = """
             SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad * p.valor) AS totalFacturado
             FROM cliente c
@@ -66,18 +67,22 @@ public class ClienteDaoMysql implements ClienteDao {
             ORDER BY totalFacturado DESC;
         """;
 
-        List<Cliente> clientesFacturados = new ArrayList<>();
+        List<ClienteConFacturacionDTO> clientesFacturados = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
+                int idCliente = rs.getInt("idCliente");
                 String nombre = rs.getString("nombre");
                 String email = rs.getString("email");
+                int totalFacturado = rs.getInt("totalFacturado");
 
-                Cliente cliente = new Cliente( nombre, email);
-                cliente.setIdCliente(rs.getInt("idCliente"));
-                clientesFacturados.add(cliente);
+
+                ClienteConFacturacionDTO c1 = new ClienteConFacturacionDTO(
+                        idCliente,nombre,email,totalFacturado);
+
+                clientesFacturados.add(c1);
             }
         } catch (SQLException e) {
             e.printStackTrace();

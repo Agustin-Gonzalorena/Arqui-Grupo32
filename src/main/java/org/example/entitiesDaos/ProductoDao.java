@@ -1,13 +1,12 @@
 package org.example.entitiesDaos;
 
 import org.example.entities.Producto;
-
-import java.util.List;
+import org.example.entities.dtos.ProductoConRecaudacionDTO;
 
 public interface ProductoDao {
     void createTable();
     boolean save(Producto producto);
-    Producto getProductoMayorRecaudacion();
+    ProductoConRecaudacionDTO getProductoMayorRecaudacion();
     void commit();
     void closeConnection();
 }

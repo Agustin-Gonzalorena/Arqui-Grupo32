@@ -1,18 +1,10 @@
 package org.example;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-import org.example.entities.Cliente;
-import org.example.entities.Factura;
-import org.example.entities.Producto;
+import org.example.entities.dtos.ClienteConFacturacionDTO;
 import org.example.entitiesDaos.ClienteDao;
-import org.example.entitiesDaos.FacturaDao;
 import org.example.entitiesDaos.ProductoDao;
-import org.example.mysqlDB.*;
 import org.example.servicios.InsertarCSV;
 
-import java.io.FileReader;
 import java.util.List;
 
 public class Main {
@@ -21,7 +13,7 @@ public class Main {
         DaoFactory daoFactory = DaoFactory.getDaoFactory(DaoFactory.MYSQL_JDBC);
 
         //Creacion de tablas -ejercicio 1
-        daoFactory.createTable();
+        /*daoFactory.createTable();
         System.out.println("-----------------------------");
         System.out.println("Tablas creadas");
 
@@ -29,7 +21,7 @@ public class Main {
         InsertarCSV insertService = new InsertarCSV();
         insertService.insertar();
         System.out.println("-----------------------------");
-        System.out.println("Se insertaron los datos");
+        System.out.println("Se insertaron los datos");*/
 
         // Se recupera el producto que mas recaudo -ejercicio 3
         ProductoDao p = daoFactory.getProductoDao();
@@ -41,8 +33,8 @@ public class Main {
         ClienteDao c = daoFactory.getClienteDao();
         System.out.println("-----------------------------");
         System.out.println("Lista de clientes ordenados segun quien facturo mas, de mayor a menor:");
-        List<Cliente> clientes = c.getClientesPorMayorFacturacion();
-        for (Cliente cliente : clientes) {
+        List<ClienteConFacturacionDTO> clientes = c.getClientesPorMayorFacturacion();
+        for (ClienteConFacturacionDTO cliente : clientes) {
             System.out.println(cliente);
         }
 

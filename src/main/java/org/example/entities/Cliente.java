@@ -1,7 +1,5 @@
 package org.example.entities;
 
-import java.util.List;
-
 public class Cliente {
     private int idCliente;
     private String nombre;
