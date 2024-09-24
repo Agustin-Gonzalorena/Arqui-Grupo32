@@ -12,6 +12,7 @@ public class Carrera {
     private long id;
     @Column
     private String nombre;
+
     @OneToMany (mappedBy = "carrera")
     private List<Inscripcion> inscripciones;
 

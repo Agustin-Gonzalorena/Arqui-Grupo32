@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface Estudiante_Repository {
 
-    public void darDeAlta(Estudiante e);
+    public void agregar(Estudiante e);
     public List<Estudiante> getEstudiantesPorOrden(String orden);
     public Estudiante getEstudiantePorLibreta(int libreta);
     public List<Estudiante> getEstudiantesPorGenero(String genero);

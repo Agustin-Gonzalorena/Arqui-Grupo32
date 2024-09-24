@@ -9,40 +9,27 @@ import java.util.List;
 
 public class Carrera_Repository_impl implements Carrera_Repository {
 
-    private static Carrera_Repository_impl instancia;
-    public ConexionEntityManager conexion;
+    private EntityManager em;
 
-    private Carrera_Repository_impl() {
-        this.conexion=ConexionEntityManager.getInstancia();
+    public Carrera_Repository_impl(EntityManager em) {
+        this.em = em;
     }
 
-    public static Carrera_Repository_impl getInstancia() {
-        if(instancia==null){
-            instancia = new Carrera_Repository_impl();
-            return instancia;
-        }else{
-            return instancia;
-        }
-    }
-
-    public void agregarCarrera(Carrera carrera) {
-        EntityManager em = conexion.getConexion();
-        em.getTransaction().begin();
-        Carrera c = em.find(Carrera.class, carrera);
+    public void agregar(Carrera carrera) {
+        Carrera c = buscar(carrera);
         if(c==null){
             em.persist(carrera);
         }else{
             System.out.println("La carrera ya existe");
         }
-        em.getTransaction().commit();
-        conexion.closeConection(em);
+    }
+    public Carrera buscar(Carrera carrera) {
+        return em.find(Carrera.class, carrera);
     }
 
 
     @Override
     public List<Carrera> getCarrerasIncriptosOrdenada() {
-        EntityManager em = conexion.getConexion();
-        em.getTransaction().begin();
         String query="select c " +
                         "from Carrera c " +
                         "join c.inscripciones i " +
@@ -50,8 +37,7 @@ public class Carrera_Repository_impl implements Carrera_Repository {
                         "group by c " +
                         "order by count(c) desc";
         List<Carrera> carreras = em.createQuery(query).getResultList();
-        em.getTransaction().commit();
-        conexion.closeConection(em);
+
         return carreras;
     }
 
