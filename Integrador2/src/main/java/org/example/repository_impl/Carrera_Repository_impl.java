@@ -1,8 +1,7 @@
-package org.example.DAO_impl;
+package org.example.repository_impl;
 
-import org.example.ConexionEntityManager;
-import org.example.entidades.Carrera;
-import org.example.entidades_Repository.Carrera_Repository;
+import org.example.entity.Carrera;
+import org.example.repository.Carrera_Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -16,15 +15,15 @@ public class Carrera_Repository_impl implements Carrera_Repository {
     }
 
     public void agregar(Carrera carrera) {
-        Carrera c = buscar(carrera);
-        if(c==null){
+        try{
             em.persist(carrera);
-        }else{
-            System.out.println("La carrera ya existe");
+        } catch (Exception e) {
+            System.out.println("Error al agregar el carrera");
+            e.printStackTrace();
         }
     }
-    public Carrera buscar(Carrera carrera) {
-        return em.find(Carrera.class, carrera);
+    public Carrera buscarPorId(int id) {
+        return em.find(Carrera.class, id);
     }
 
 
@@ -36,9 +35,14 @@ public class Carrera_Repository_impl implements Carrera_Repository {
                         "join i.estudiante e " +
                         "group by c " +
                         "order by count(c) desc";
+        try {
         List<Carrera> carreras = em.createQuery(query).getResultList();
-
         return carreras;
+        } catch (Exception e) {
+            System.out.println("Error al buscar los carreras");
+            return null;
+        }
+
     }
 
 

@@ -1,15 +1,14 @@
-package org.example.entidades;
+package org.example.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 public class Inscripcion {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     @ManyToOne
     private Estudiante estudiante;
     @ManyToOne
@@ -31,7 +30,7 @@ public class Inscripcion {
         super();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
