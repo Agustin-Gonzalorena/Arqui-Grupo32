@@ -4,6 +4,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.example.entity.Inscripcion;
+import org.example.entity.dto.CarreraConInscriptosYEgresados;
 import org.example.repository_impl.Carrera_Repository_impl;
 import org.example.repository_impl.Estudiante_Repository_impl;
 import org.example.entity.Carrera;
@@ -74,6 +75,13 @@ public class Main {
 
         //Ej_2_g):recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
         recuperarEstudiantesPorCarreraYCidudad(em,cRepo,eRepo);
+        System.out.println("-----------------------");
+
+        //Ej_3 Generar un reporte de las carreras...
+        List<CarreraConInscriptosYEgresados> results = cRepo.generarReportes();
+        for (CarreraConInscriptosYEgresados e : results) {
+            System.out.println(e);
+        }
 
         em.getTransaction().commit();
         em.close();
