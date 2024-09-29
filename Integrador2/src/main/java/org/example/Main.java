@@ -25,6 +25,7 @@ public class Main {
         Carrera_Repository_impl cRepo = new Carrera_Repository_impl(em);
         Inscripcion_Repository_impl iRepo = new Inscripcion_Repository_impl(em);
 
+        //agrega datos desde csv a la base
         InsertCSV insertCSV = new InsertCSV(em);
         insertCSV.insert();
         System.out.println("Datos cargados");

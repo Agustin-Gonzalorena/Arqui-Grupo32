@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class Carrera_Repository_impl implements Carrera_Repository {
-
     private EntityManager em;
 
     public Carrera_Repository_impl(EntityManager em) {
         this.em = em;
     }
 
+    @Override
     public void agregar(Carrera carrera) {
         try {
             em.persist(carrera);
@@ -26,10 +26,10 @@ public class Carrera_Repository_impl implements Carrera_Repository {
         }
     }
 
+    @Override
     public Carrera buscarPorId(int id) {
         return em.find(Carrera.class, id);
     }
-
 
     @Override
     public List<Carrera> getCarrerasIncriptosOrdenada() {
@@ -49,6 +49,7 @@ public class Carrera_Repository_impl implements Carrera_Repository {
 
     }
 
+    @Override
     public List<CarreraConInscriptosYEgresados> generarReportes() {
         String query = "SELECT c.nombre, YEAR(i.antiguedad), "
                     + "COUNT(i), "

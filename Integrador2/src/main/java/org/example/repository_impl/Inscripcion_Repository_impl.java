@@ -10,13 +10,12 @@ import javax.persistence.EntityManager;
 import java.time.LocalDate;
 
 public class Inscripcion_Repository_impl implements Inscripcion_Repository {
-
     private EntityManager em;
 
     public Inscripcion_Repository_impl(EntityManager em) {
         this.em = em;
     }
-
+    @Override
     public void agregar(Inscripcion inscripcion) {
         try{
             em.persist(inscripcion);

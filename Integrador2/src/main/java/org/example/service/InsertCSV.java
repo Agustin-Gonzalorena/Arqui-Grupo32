@@ -41,16 +41,19 @@ public class InsertCSV {
     }
     public void insert(){
         try {
+            //agrega las carreras
             for(CSVRecord c : parserCarrera){
                 Carrera c1 = new Carrera(c.get("nombre"));
                 carreraRepository.agregar(c1);
             }
+            //agrega los estudiantes
             for(CSVRecord e : parserEstudiante){
                 Estudiante e1 = new Estudiante(e.get("nombre"),e.get("apellido"),
                         e.get("genero"),Integer.parseInt(e.get("DNI")),e.get("Ciudad"),
                         Integer.parseInt(e.get("NroLibretaUniversitaria")));
                 estudianteRepository.agregar(e1);
             }
+            //busca el estudiante ya ingresado y busca la carrera donde el estudiante se quiere anotar y lo inscribe
             for(CSVRecord i : parserInscripcion){
                 Estudiante es = estudianteRepository.buscarPorDNI(Integer.parseInt(i.get("estudiante_DNI")));
                 Carrera ca = carreraRepository.buscarPorId(Integer.parseInt(i.get("carrera_id")));

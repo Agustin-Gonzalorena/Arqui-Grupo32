@@ -5,7 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ConexionEntityManager {
-
     private static ConexionEntityManager instancia;
     private EntityManagerFactory emf;
 

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Estudiante_Repository_impl implements Estudiante_Repository {
-
     private EntityManager em;
 
     public Estudiante_Repository_impl(EntityManager em) {
@@ -25,6 +24,7 @@ public class Estudiante_Repository_impl implements Estudiante_Repository {
             ex.printStackTrace();
         }
     }
+
     @Override
     public Estudiante buscarPorDNI(int id) {
         try {
