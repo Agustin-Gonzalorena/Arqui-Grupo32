@@ -6,7 +6,6 @@ import org.example.entity.Estudiante;
 import java.util.List;
 
 public interface Estudiante_Repository {
-
     public void agregar(Estudiante e);
     public Estudiante buscarPorDNI(int id);
     public List<Estudiante> getEstudiantesByOrden(String orden);

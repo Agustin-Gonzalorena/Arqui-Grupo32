@@ -1,4 +1,4 @@
-id,estudiante_DNI,carrera_id,antiguedad,graduado
+id,estudiante_DNI,carrera_id,fechaInscripcion,graduado
 1,25870007,1,2023-02-16,False
 2,16145116,1,2024-05-25,False
 3,32379378,1,2023-03-07,True

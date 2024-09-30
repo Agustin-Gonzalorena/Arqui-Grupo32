@@ -26,13 +26,4 @@ public class ConexionEntityManager {
         return emf.createEntityManager();
     }
 
-    public void closeConection(EntityManager em) {
-        if(em.isOpen()){
-            em.close();
-        }
-        if(emf.isOpen()){
-            emf.close();
-        }
-    }
-
 }

@@ -8,7 +8,6 @@ import org.example.repository.Carrera_Repository;
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Carrera_Repository_impl implements Carrera_Repository {
     private EntityManager em;
@@ -52,13 +51,13 @@ public class Carrera_Repository_impl implements Carrera_Repository {
 
     @Override
     public List<CarreraConInscriptosYEgresados> generarReportes() {
-        String query = "SELECT c.nombre, YEAR(i.antiguedad), "
+        String query = "SELECT c.nombre, YEAR(i.fechaInscripcion), "
                     + "COUNT(i), "
                     + "SUM(CASE WHEN i.graduado = true THEN 1 ELSE 0 END) "
                     + "FROM Inscripcion i "
                     + "LEFT JOIN i.keyInscripcion.carrera c "
-                    + "GROUP BY c.nombre, YEAR(i.antiguedad) "
-                    + "ORDER BY c.nombre ASC, YEAR(i.antiguedad) ASC";
+                    + "GROUP BY c.nombre, YEAR(i.fechaInscripcion) "
+                    + "ORDER BY c.nombre ASC, YEAR(i.fechaInscripcion) ASC";
 
         List<Object[]> results = em.createQuery(query).getResultList();
         List<CarreraConInscriptosYEgresados> carreras = new ArrayList<>();

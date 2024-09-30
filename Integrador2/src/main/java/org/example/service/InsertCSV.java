@@ -3,7 +3,6 @@ package org.example.service;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.example.ConexionEntityManager;
 import org.example.entity.Carrera;
 import org.example.entity.Estudiante;
 import org.example.entity.Inscripcion;
@@ -60,7 +59,7 @@ public class InsertCSV {
             for(CSVRecord i : parserInscripcion){
                 Estudiante es = estudianteRepository.buscarPorDNI(Integer.parseInt(i.get("estudiante_DNI")));
                 Carrera ca = carreraRepository.buscarPorId(Integer.parseInt(i.get("carrera_id")));
-                Inscripcion i1 = new Inscripcion(es,ca, LocalDate.parse(i.get("antiguedad")),Boolean.parseBoolean(i.get("graduado")));
+                Inscripcion i1 = new Inscripcion(es,ca, LocalDate.parse(i.get("fechaInscripcion")),Boolean.parseBoolean(i.get("graduado")));
                 inscripcionRepository.agregar(i1);
             }
 
