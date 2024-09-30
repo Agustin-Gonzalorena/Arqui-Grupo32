@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
         EntityManager em = ConexionEntityManager.getInstancia().getConexion();
 
@@ -90,10 +91,12 @@ public class Main {
         Carrera carrera = cRepo.buscarPorId(2);
         //Recupera los estudiantes de esa carrera y de la ciudad que se le pasa por parametro
         List<Estudiante> estudiantes = eRepo.getEstudiantesPorCarreraCiudad(carrera,"Tandil");
-
-        System.out.println("Carrera: "+carrera.getNombre());
-        for (Estudiante estudiante : estudiantes) {
-            System.out.println(estudiante);
+        if (estudiantes != null) {
+            System.out.println("Carrera: "+carrera.getNombre());
+            for (Estudiante estudiante : estudiantes) {
+                System.out.println(estudiante);
+            }
         }
+
     }
 }

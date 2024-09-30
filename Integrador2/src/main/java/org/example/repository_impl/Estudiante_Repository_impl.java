@@ -90,7 +90,7 @@ public class Estudiante_Repository_impl implements Estudiante_Repository {
         String query="select e " +
                         "from Estudiante e " +
                         "join e.inscripciones i " +
-                        "join i.carrera c " +
+                        "join i.keyInscripcion.carrera c " +
                         "where c.id = :id_carrera and e.CiudadResidencia = :ciudad";
         try {
             List<Estudiante> estudiantesPorCarrera_ciudad = em.createQuery(query, Estudiante.class)

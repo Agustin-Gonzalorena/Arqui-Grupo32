@@ -13,7 +13,7 @@ public class Carrera {
     @Column
     private String nombre;
 
-    @OneToMany (mappedBy = "carrera")
+    @OneToMany (mappedBy = "keyInscripcion.carrera", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
 
     public Carrera(String nombre) {

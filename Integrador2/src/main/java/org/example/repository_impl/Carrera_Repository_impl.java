@@ -37,7 +37,7 @@ public class Carrera_Repository_impl implements Carrera_Repository {
         String query = "select new org.example.entity.dto.CarreraConInscriptos(c.id,c.nombre,count(e.id)) " +
                 "from Carrera c " +
                 "join c.inscripciones i " +
-                "join i.estudiante e " +
+                "join i.keyInscripcion.estudiante e " +
                 "group by c " +
                 "order by count(c) desc";
         try {
@@ -56,7 +56,7 @@ public class Carrera_Repository_impl implements Carrera_Repository {
                     + "COUNT(i), "
                     + "SUM(CASE WHEN i.graduado = true THEN 1 ELSE 0 END) "
                     + "FROM Inscripcion i "
-                    + "LEFT JOIN i.carrera c "
+                    + "LEFT JOIN i.keyInscripcion.carrera c "
                     + "GROUP BY c.nombre, YEAR(i.antiguedad) "
                     + "ORDER BY c.nombre ASC, YEAR(i.antiguedad) ASC";
 

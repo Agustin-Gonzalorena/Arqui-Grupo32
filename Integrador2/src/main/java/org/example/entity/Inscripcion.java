@@ -6,22 +6,16 @@ import java.time.LocalDate;
 @Entity
 public class Inscripcion {
 
-    @Id
-    @GeneratedValue
-    private int id;
-    @ManyToOne
-    private Estudiante estudiante;
-    @ManyToOne
-    private Carrera carrera;
+    @EmbeddedId
+    private KeyInscripcion keyInscripcion;
     @Column
     private LocalDate antiguedad;
     @Column
     private boolean graduado;
 
 
-    public Inscripcion(Estudiante estudiante, Carrera carrera, LocalDate antiguedad, boolean graduado) {
-        this.estudiante = estudiante;
-        this.carrera = carrera;
+    public Inscripcion(Estudiante estudiante,Carrera carrera, LocalDate antiguedad, boolean graduado) {
+        keyInscripcion = new KeyInscripcion(estudiante,carrera);
         this.antiguedad = antiguedad;
         this.graduado = graduado;
     }
@@ -30,25 +24,7 @@ public class Inscripcion {
         super();
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
-    }
-
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
 
     public LocalDate getAntiguedad() {
         return antiguedad;
@@ -69,9 +45,6 @@ public class Inscripcion {
     @Override
     public String toString() {
         return "Inscripcion{" +
-                "id=" + id +
-                ", estudiante=" + estudiante +
-                ", carrera=" + carrera +
                 ", antiguedad=" + antiguedad +
                 ", graduado=" + graduado +
                 '}';

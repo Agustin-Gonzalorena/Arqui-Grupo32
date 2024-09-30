@@ -20,7 +20,7 @@ public class Estudiante implements Serializable {
     private String CiudadResidencia;
     @Column(unique = true)
     private int NroLibretaUniversitaria;
-    @OneToMany (mappedBy = "estudiante")
+    @OneToMany (mappedBy = "keyInscripcion.estudiante")
     private List<Inscripcion> inscripciones;
 
     public Estudiante(String nombre, String apellido, String genero,
