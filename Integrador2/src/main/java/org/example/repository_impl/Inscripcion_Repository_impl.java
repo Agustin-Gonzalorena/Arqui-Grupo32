@@ -1,8 +1,5 @@
 package org.example.repository_impl;
 
-import org.example.ConexionEntityManager;
-import org.example.entity.Carrera;
-import org.example.entity.Estudiante;
 import org.example.entity.Inscripcion;
 import org.example.repository.Inscripcion_Repository;
 

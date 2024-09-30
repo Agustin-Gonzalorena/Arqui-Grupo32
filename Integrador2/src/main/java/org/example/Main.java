@@ -24,6 +24,7 @@ public class Main {
         Inscripcion_Repository_impl iRepo = new Inscripcion_Repository_impl(em);
 
         em.getTransaction().begin();
+
         //agrega datos desde csv a la base
         InsertCSV insertCSV = new InsertCSV(em);
         insertCSV.insert();
@@ -38,6 +39,7 @@ public class Main {
         Carrera carrera = cRepo.buscarPorId(1);
         Inscripcion inscripcion = new Inscripcion(e1,carrera, LocalDate.now(),false);
         iRepo.agregar(inscripcion);
+
         em.getTransaction().commit();
 
 
@@ -83,6 +85,7 @@ public class Main {
         for (CarreraConInscriptosYEgresados e : results) {
             System.out.println(e);
         }
+
         em.close();
     }
 

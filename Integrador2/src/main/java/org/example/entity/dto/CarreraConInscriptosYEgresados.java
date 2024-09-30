@@ -48,10 +48,10 @@ public class CarreraConInscriptosYEgresados {
     @Override
     public String toString() {
         return "CarreraInfo{" +
-                "Carrera ='" + nombre + '\'' +
-                ", Año =" + anio +
-                ", Inscriptos =" + inscriptos +
-                ", Egresados =" + egresados +
+                "Carrera='" + nombre + '\'' +
+                ", Año=" + anio +
+                ", Inscriptos=" + inscriptos +
+                ", Egresados=" + egresados +
                 '}';
     }
 }

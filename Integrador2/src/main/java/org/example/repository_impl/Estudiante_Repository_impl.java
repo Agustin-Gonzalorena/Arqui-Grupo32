@@ -5,7 +5,6 @@ import org.example.entity.Estudiante;
 import org.example.repository.Estudiante_Repository;
 
 import javax.persistence.EntityManager;
-import java.sql.SQLException;
 import java.util.List;
 
 public class Estudiante_Repository_impl implements Estudiante_Repository {

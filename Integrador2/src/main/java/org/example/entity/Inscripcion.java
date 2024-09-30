@@ -9,14 +9,14 @@ public class Inscripcion {
     @EmbeddedId
     private KeyInscripcion keyInscripcion;
     @Column
-    private LocalDate antiguedad;
+    private LocalDate fechaInscripcion;
     @Column
     private boolean graduado;
 
 
-    public Inscripcion(Estudiante estudiante,Carrera carrera, LocalDate antiguedad, boolean graduado) {
+    public Inscripcion(Estudiante estudiante,Carrera carrera, LocalDate fechaInscripcion, boolean graduado) {
         keyInscripcion = new KeyInscripcion(estudiante,carrera);
-        this.antiguedad = antiguedad;
+        this.fechaInscripcion = fechaInscripcion;
         this.graduado = graduado;
     }
 
@@ -26,12 +26,12 @@ public class Inscripcion {
 
 
 
-    public LocalDate getAntiguedad() {
-        return antiguedad;
+    public LocalDate getfechaInscripcion() {
+        return fechaInscripcion;
     }
 
-    public void setAntiguedad(LocalDate antiguedad) {
-        this.antiguedad = antiguedad;
+    public void setfechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
     }
 
     public boolean isGraduado() {
@@ -45,7 +45,7 @@ public class Inscripcion {
     @Override
     public String toString() {
         return "Inscripcion{" +
-                ", antiguedad=" + antiguedad +
+                ", fechaInscripcion=" + fechaInscripcion +
                 ", graduado=" + graduado +
                 '}';
     }
