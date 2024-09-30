@@ -1,4 +1,4 @@
-package org.example.entidades;
+package org.example.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,10 +9,11 @@ public class Carrera {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     @Column
     private String nombre;
-    @OneToMany (mappedBy = "carrera")
+
+    @OneToMany (mappedBy = "keyInscripcion.carrera", cascade = CascadeType.ALL)
     private List<Inscripcion> inscripciones;
 
     public Carrera(String nombre) {
@@ -24,7 +25,7 @@ public class Carrera {
         super();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -49,7 +50,7 @@ public class Carrera {
         return "Carrera{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", inscripciones=" + inscripciones +
+                ", cantidadInscripciones=" + inscripciones.size() +
                 '}';
     }
 

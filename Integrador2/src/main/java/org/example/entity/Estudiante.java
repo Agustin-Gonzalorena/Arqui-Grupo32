@@ -1,4 +1,4 @@
-package org.example.entidades;
+package org.example.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,12 +15,12 @@ public class Estudiante implements Serializable {
     @Column
     private String genero;
     @Id
-    private long DNI;
+    private int DNI;
     @Column
     private String CiudadResidencia;
     @Column(unique = true)
     private int NroLibretaUniversitaria;
-    @OneToMany (mappedBy = "estudiante")
+    @OneToMany (mappedBy = "keyInscripcion.estudiante")
     private List<Inscripcion> inscripciones;
 
     public Estudiante(String nombre, String apellido, String genero,
@@ -63,7 +63,7 @@ public class Estudiante implements Serializable {
         this.genero = genero;
     }
 
-    public long getDNI() {
+    public int getDNI() {
         return DNI;
     }
 
@@ -101,7 +101,6 @@ public class Estudiante implements Serializable {
                 ", DNI=" + DNI +
                 ", CiudadResidencia='" + CiudadResidencia + '\'' +
                 ", NroLibretaUniversiria=" + NroLibretaUniversitaria +
-                ", inscripciones=" + inscripciones +
                 '}';
     }
 

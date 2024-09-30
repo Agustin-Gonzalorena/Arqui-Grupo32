@@ -5,11 +5,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class ConexionEntityManager {
-
     private static ConexionEntityManager instancia;
     private EntityManagerFactory emf;
 
-    private ConexionEntityManager() {}
+    private ConexionEntityManager() {
+        emf = Persistence.createEntityManagerFactory("pedro");
+
+    }
 
     public static ConexionEntityManager getInstancia() {
         if(instancia==null){
@@ -21,14 +23,16 @@ public class ConexionEntityManager {
     }
 
     public EntityManager getConexion() {
-        emf = Persistence.createEntityManagerFactory("pedro");
-        EntityManager em = emf.createEntityManager();
-        return em;
+        return emf.createEntityManager();
     }
 
     public void closeConection(EntityManager em) {
-        em.close();
-        this.emf.close();
+        if(em.isOpen()){
+            em.close();
+        }
+        if(emf.isOpen()){
+            emf.close();
+        }
     }
 
 }
