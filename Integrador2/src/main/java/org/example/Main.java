@@ -1,9 +1,7 @@
 package org.example;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.example.entity.Inscripcion;
+import org.example.entity.dto.CarreraConInscriptos;
 import org.example.entity.dto.CarreraConInscriptosYEgresados;
 import org.example.repository_impl.Carrera_Repository_impl;
 import org.example.repository_impl.Estudiante_Repository_impl;
@@ -13,18 +11,18 @@ import org.example.repository_impl.Inscripcion_Repository_impl;
 import org.example.service.InsertCSV;
 
 import javax.persistence.EntityManager;
-import java.io.FileReader;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         EntityManager em = ConexionEntityManager.getInstancia().getConexion();
-        em.getTransaction().begin();
+
         Estudiante_Repository_impl eRepo = new Estudiante_Repository_impl(em);
         Carrera_Repository_impl cRepo = new Carrera_Repository_impl(em);
         Inscripcion_Repository_impl iRepo = new Inscripcion_Repository_impl(em);
 
+        em.getTransaction().begin();
         //agrega datos desde csv a la base
         InsertCSV insertCSV = new InsertCSV(em);
         insertCSV.insert();
@@ -37,8 +35,10 @@ public class Main {
 
         //Ej_2_b) matricular un estudiante en una carrera
         Carrera carrera = cRepo.buscarPorId(1);
-        Inscripcion inscripcion = new Inscripcion(e1,carrera,LocalDate.now(),false);
+        Inscripcion inscripcion = new Inscripcion(e1,carrera, LocalDate.now(),false);
         iRepo.agregar(inscripcion);
+        em.getTransaction().commit();
+
 
         //Ej_2_c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
         List<Estudiante> es1 = eRepo.getEstudiantesByOrden("nombre");
@@ -63,13 +63,12 @@ public class Main {
             }
         }
         System.out.println("-----------------------");
-
         //Ej_2_f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos
-        List<Carrera> ca1 = cRepo.getCarrerasIncriptosOrdenada();
-        if(ca1!=null){
+        List<CarreraConInscriptos> carreraInscriptos = cRepo.getCarrerasIncriptosOrdenada();
+        if(carreraInscriptos!=null){
             System.out.println("Carreras encontradas:");
-            for (Carrera e : ca1) {
-                System.out.println(e);
+            for (CarreraConInscriptos ci : carreraInscriptos) {
+                System.out.println(ci);
             }
         }
         System.out.println("-----------------------");
@@ -83,8 +82,6 @@ public class Main {
         for (CarreraConInscriptosYEgresados e : results) {
             System.out.println(e);
         }
-
-        em.getTransaction().commit();
         em.close();
     }
 

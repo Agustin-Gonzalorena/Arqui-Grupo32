@@ -3,6 +3,7 @@ package org.example.service;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.example.ConexionEntityManager;
 import org.example.entity.Carrera;
 import org.example.entity.Estudiante;
 import org.example.entity.Inscripcion;
@@ -30,6 +31,7 @@ public class InsertCSV {
     private EntityManager em;
 
     public InsertCSV(EntityManager em) {
+        this.em = em;
         parserCarrera = lector(FILE_NAME_CARRERA);
         parserEstudiante = lector(FILE_NAME_ESTUDIANTE);
         parserInscripcion = lector(FILE_NAME_INSCRIPCION);
@@ -40,6 +42,7 @@ public class InsertCSV {
 
     }
     public void insert(){
+
         try {
             //agrega las carreras
             for(CSVRecord c : parserCarrera){
@@ -60,6 +63,7 @@ public class InsertCSV {
                 Inscripcion i1 = new Inscripcion(es,ca, LocalDate.parse(i.get("antiguedad")),Boolean.parseBoolean(i.get("graduado")));
                 inscripcionRepository.agregar(i1);
             }
+
         } catch (Exception e) {
             System.out.println("No se pudo insertar");
             e.printStackTrace();
