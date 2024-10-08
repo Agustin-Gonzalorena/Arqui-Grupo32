@@ -1,28 +1,74 @@
-# Ejercicio Integrador 3
+# Integrador 3 
 
-Tome como punto de partida el ejercicio integrador del TP2
+## _API Endopints_
 
-1. Considere el diseño de un registro de estudiantes, con la siguiente información: nombres,
-   apellido, edad, género, número de documento, ciudad de residencia, número de libreta
-   universitaria, carrera(s) en la que está inscripto, antigüedad en cada una de esas carreras, y
-   si se graduó o no.
-2. Implementar las consultas mediante servicios REST para:
-   a) dar de alta un estudiante
+**Url para importar en Postman:**
 
-   b) matricular un estudiante en una carrera
+https://api.postman.com/collections/38850954-52690157-55fe-428a-8c87-7eaddedb3bbe?access_key=PMAT-01J9PJFFMC5S47PCVA9WW40DTT
 
-   c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
+## Estudiantes:
 
-   d) recuperar un estudiante, en base a su número de libreta universitaria.
+### `GET /api/estudiante`
+- **Descripcion**: Recupera todos los estudiantes.
 
-   e) recuperar todos los estudiantes, en base a su género.
+### `POST /api/estudiante`
+- **Descripcion**: Dar de alta un nuevo estudiante.
+- **Body**: 
+    ```json
+    {   
+        "nombre":"Franco",
+        "apellido":"Colapinto",
+        "genero":"masculino",
+        "dni":434343,
+        "ciudadResidencia":"Pilar",
+        "nroLibretaUniversitaria":43 
+    }
 
-   f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
+### `GET /api/estudiante?sort=nombre,asc`
+- **Descripcion**: Recupera todos los estudiantes y especificar criterio de ordenamiento.
+- **Parametros**: 
+  - sort= 'nombre','apellido', 'ciudad', 'dni', 'nroLibretaUniversitaria'
 
-   g) recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
+### `GET /api/estudiante/:nroLibretaUniversitaria`
+- **Descripcion**: Recupera un estudiante,en base a su numero de libreta universitaria.
+- **Parametros**:
+  - Numero de libreta universitaria
+- **Observaciones**: Los estudiantes pre-cargados van desde 50800-50829
 
-   h) generar un reporte de las carreras, que para cada carrera incluya información de los
-   inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y
-   presentar los años de manera cronológica.
+### `GET /api/estudiante?genero=masculino`
+- **Descripcion**: Recupera todos los estudiantes, en base a su género.
+- **Parametros**:
+  - genero= 'masculino', 'femenino' o 'otro'
 
-3) Testear la invocación a los servicios REST mediante Postman, o cliente similar.
+### `GET /api/estudiante?carrera_id=1&ciudad=tandil`
+- **Descripcion**: Recupera todos los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
+- **Parametros**:
+  - carrera= 'tudai=1', 'psicologia=2', 'derecho=3', 'veterinaria=4', 'medicina=5','martillero publico=6'
+  - ciudad= 'tandil', 'buenos_aires','mar_del_plata'
+- **Observaciones**: 
+  - En vez de utilizar espacios usar ( _ ) Ejemplo: 'Mar del plata' = 'Mar_del_plata'
+
+## Inscripcion:
+
+### `POST /api/inscripcion`
+- **Descripcion**: Matricula un estudiante a una carrera.
+- **Body**:
+    ```json
+    {   
+        "estudiante_dni":434343,
+        "carrera_id":2
+    }
+- **Observaciones**: Los id de carreras ya cargadas van del 1-6.
+
+## Carrera:
+
+### `GET /api/carrera`
+- **Descripcion**: Recupera todos las carreras.
+
+### `GET /api/carrera/inscriptos`
+- **Descripcion**: Recupera las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
+
+
+### `GET /api/carrera/reporte`
+- **Descripcion**: Genera un reporte de las carreras con informacion por año de inscriptos y graduados, ordenadas las carreras
+       alfabéticamente, y los años de manera cronológica.
