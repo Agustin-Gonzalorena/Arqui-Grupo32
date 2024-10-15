@@ -77,7 +77,7 @@ public class Main {
         System.out.println("-----------------------");
 
         //Ej_2_g):recuperar los estudiantes de una determinada carrera, filtrado por ciudad de residencia.
-        recuperarEstudiantesPorCarreraYCidudad(em,cRepo,eRepo);
+        recuperarEstudiantesPorCarreraYCidudad(cRepo,eRepo);
         System.out.println("-----------------------");
 
         //Ej_3 Generar un reporte de las carreras...
@@ -89,7 +89,7 @@ public class Main {
         em.close();
     }
 
-    private static void recuperarEstudiantesPorCarreraYCidudad(EntityManager em, Carrera_Repository_impl cRepo,Estudiante_Repository_impl eRepo) {
+    private static void recuperarEstudiantesPorCarreraYCidudad(Carrera_Repository_impl cRepo,Estudiante_Repository_impl eRepo) {
         //Recupera una carrera
         Carrera carrera = cRepo.buscarPorId(2);
         //Recupera los estudiantes de esa carrera y de la ciudad que se le pasa por parametro
