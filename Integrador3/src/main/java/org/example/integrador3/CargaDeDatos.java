@@ -18,9 +18,9 @@ import java.time.LocalDate;
 
 @Component
 public class CargaDeDatos {
-    private static final String FILE_PATH_ESTUDIANTES = "src/main/resources/csvDate/estudiantes.csv";
-    private static final String FILE_PATH_CARRERAS = "src/main/resources/csvDate/carreras.csv";
-    private static final String FILE_PATH_INSCRIPCIONES = "src/main/resources/csvDate/inscripciones.csv";
+    private static final String FILE_PATH_ESTUDIANTES = "./src/main/resources/csvDate/estudiantes.csv";
+    private static final String FILE_PATH_CARRERAS = "./src/main/resources/csvDate/carreras.csv";
+    private static final String FILE_PATH_INSCRIPCIONES = "./src/main/resources/csvDate/inscripciones.csv";
 
     private CSVParser parserEstudiantes;
     private CSVParser parserCarreras;
