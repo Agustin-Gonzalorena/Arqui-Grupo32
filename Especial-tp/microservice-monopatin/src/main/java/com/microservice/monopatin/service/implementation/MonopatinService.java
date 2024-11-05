@@ -21,6 +21,7 @@ public class MonopatinService {
 
     public Monopatin create(MonopatinCreateDTO monopatinDTO) {
         try{
+            //Arreglar esto TODO
             ResponseEntity<ParadaResponseDTO> response=paradaClient.getParadaById(monopatinDTO.getParadaId());
 
             Monopatin m = new Monopatin(monopatinDTO);

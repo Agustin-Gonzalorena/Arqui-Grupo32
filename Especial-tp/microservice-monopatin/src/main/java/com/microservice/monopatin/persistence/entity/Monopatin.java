@@ -25,7 +25,7 @@ public class Monopatin {
     @Column(name = "tiempo_con_pausa")
     private double tiempoConPausa;
     @Column(name = "ultima_parada_id")
-    private Long ultimaParadaId;
+    private String ultimaParadaId;
 
     public Monopatin(MonopatinCreateDTO mDTO) {
         this.kilometros=0;

@@ -1,26 +1,27 @@
 package com.microservice.parada.persistence.entity;
 
 import com.microservice.parada.presentation.dto.ParadaCreateDTO;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+
+import java.util.UUID;
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "parada")
 public class Parada {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private Double latitud;
-    private Double longitud;
+    private Double longitud;//Haversine
 
     public Parada(ParadaCreateDTO paradaCreateDTO) {
+        //generar uuID random y setearlo
+        this.id = UUID.randomUUID().toString();
         this.latitud = paradaCreateDTO.getLatitud();
         this.longitud = paradaCreateDTO.getLongitud();
     }

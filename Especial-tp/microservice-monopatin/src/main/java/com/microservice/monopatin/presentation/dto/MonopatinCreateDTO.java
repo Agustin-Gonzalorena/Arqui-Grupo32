@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 public class MonopatinCreateDTO {
-    private Long paradaId;
+    private String paradaId;
 
     public MonopatinCreateDTO() {}
-    public MonopatinCreateDTO(Long paradaId) {
+    public MonopatinCreateDTO(String paradaId) {
         this.paradaId = paradaId;
     }
 }

@@ -21,12 +21,15 @@ public class Usuario {
     private Long id;
     private String nombre;
     private String apellido;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
+    private String password;
     private String telefono;
     @Column(name = "fecha_de_alta")
     private LocalDate fechaDeAlta;
-    private String Rol;
+    private String rol;
+    private Boolean ban; //BAN o no
     @ManyToMany
-    private List<CuentaId> cuentasId;
+    private List<Cuenta> cuentas;
 }

@@ -24,7 +24,7 @@ public class ParadaService {
         }
     }
 
-    public Parada findById(Long id) {
+    public Parada findById(String id) {
         return paradaRepo.findById(id)
                 .orElseThrow(()->new ParadaException("La parada con el id: " + id + " no existe"));
     }
@@ -36,7 +36,7 @@ public class ParadaService {
         }
     }
 
-    public Parada update(ParadaCreateDTO parada, Long id) {
+    public Parada update(ParadaCreateDTO parada, String id) {
         Parada oldParada = findById(id);
         try{
             oldParada.setLongitud(parada.getLongitud());
@@ -47,7 +47,7 @@ public class ParadaService {
         }
     }
 
-    public Parada delete(Long id) {
+    public Parada delete(String id) {
         Parada parada = findById(id);
         try{
             paradaRepo.delete(parada);

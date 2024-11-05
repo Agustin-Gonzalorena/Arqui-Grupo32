@@ -50,6 +50,7 @@ public class ViajeService {
         }
     }
     public Viaje pausar(Long idUsuario){
+        //solo puede hacer una pausa, chequear que no esten en null TODO
         try {
             if(!viajeActivo(idUsuario)){
                 throw new ViajeException("El usuario no tiene un viaje activo");
