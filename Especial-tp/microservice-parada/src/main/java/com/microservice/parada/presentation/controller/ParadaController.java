@@ -21,7 +21,7 @@ public class ParadaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> findById(@PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(),paradaService.findById(id)));
     }
@@ -32,14 +32,21 @@ public class ParadaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody ParadaCreateDTO paradaCreateDTO, @PathVariable("id") Long id) {
+    public ResponseEntity<?> update(@RequestBody ParadaCreateDTO paradaCreateDTO, @PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), paradaService.update(paradaCreateDTO,id)));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") String id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), paradaService.delete(id)));
+    }
+
+    @GetMapping("/cerca")
+    public ResponseEntity<?> paradasCerca(@RequestParam (name = "latitud") Double latitud,
+                                           @RequestParam (name = "longitud") Double longitud) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), paradaService.cerca(latitud, longitud)));
     }
 }

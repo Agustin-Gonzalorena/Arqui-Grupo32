@@ -2,8 +2,15 @@ package com.microservice.viaje.service.implementation;
 
 import com.microservice.viaje.persistence.entity.Viaje;
 import com.microservice.viaje.persistence.repository.ViajeRepo;
+import com.microservice.viaje.presentation.dto.FacturaDTO;
+import com.microservice.viaje.presentation.dto.MonopatinResponseDTO;
+import com.microservice.viaje.presentation.dto.TarifaResponseDTO;
 import com.microservice.viaje.presentation.dto.ViajeCreateDTO;
+import com.microservice.viaje.presentation.response.ApiResponse;
 import com.microservice.viaje.service.exception.ViajeException;
+import com.microservice.viaje.service.http.FacturaClient;
+import com.microservice.viaje.service.http.MonopatinClient;
+import com.microservice.viaje.service.http.TarifaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +22,19 @@ import java.time.LocalDateTime;
 public class ViajeService {
     @Autowired
     private ViajeRepo viajeRepo;
+    @Autowired
+    private MonopatinClient monopatinClient;
+    @Autowired
+    private TarifaClient tarifaClient;
+    @Autowired
+    private FacturaClient facturaClient;
 
     public Viaje create(ViajeCreateDTO viaje) {
         try{
-            //chequear que el monopatin exista y no este en mantenimiento{peticion monopatin} TODO
+            //si no existe va al catch
+            ApiResponse<MonopatinResponseDTO> response = monopatinClient.getMonopatinById(viaje.getMonopatinId()).getBody();
+            MonopatinResponseDTO monopatinDTO = response.getData();
+            if(monopatinDTO.isEnMantenimiento()) throw new ViajeException("El monopatin esta en mantenimiento");
             //chequear que el usuario exista{peticion usuario} TODO
             //chequear que el monopatin no este en uso TODO
             if(viajeActivo(viaje.getUsuarioId())){//chequear que no tenga un viaje activo
@@ -42,8 +58,8 @@ public class ViajeService {
             calcularPrecio(v);
             estimarKilometros(v);
             viajeRepo.save(v);
-            //Pedir monopatin y sumarle kilometros y minutos TODO
-            //Mandar a facturarion para que hagan el cobro TODO
+            actualizarMonopatin(v);
+            enviarAFacuturacion(v);
             return v;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -63,6 +79,7 @@ public class ViajeService {
             throw new ViajeException("Error al pausar el viaje");
         }
     }
+
     public Viaje finPausa(Long idUsuario){
        try{
            if(!viajeActivo(idUsuario)){
@@ -95,8 +112,11 @@ public class ViajeService {
 
     //en realidad deberia estar calculado en minutos pero por cuestines de prueba los segundos serian minutos
     private void calcularPrecio(Viaje v){
-        double precioNormal=100; //pedir a la api de cuentas TODO
-        double precioExtra=20;
+        ApiResponse<TarifaResponseDTO> response = tarifaClient.getTarifaVigente().getBody();
+        TarifaResponseDTO tarifaDTO = response.getData();
+
+        double precioNormal=tarifaDTO.getPrecio();
+        double precioExtra=tarifaDTO.getExtra();
 
         double minutosTotales= Duration.between(v.getInicio(), v.getFin()).toSeconds();
         double total= minutosTotales*precioNormal;
@@ -118,6 +138,31 @@ public class ViajeService {
         } else if (tiempoTotal>=25 && tiempoTotal<50) {
             v.setKilometros(50.0);
         }
+    }
+
+    private void actualizarMonopatin(Viaje v){
+        ApiResponse<MonopatinResponseDTO> response = monopatinClient.getMonopatinById(v.getMonopatinId()).getBody();
+        MonopatinResponseDTO monopatin = response.getData();
+        monopatin.setKilometros(monopatin.getKilometros()+v.getKilometros());
+        monopatin.setTiempoSinPausa(monopatin.getTiempoSinPausa() + Duration.between(v.getInicio(), v.getFin()).toSeconds());
+
+        //si arranco la pausa y se paso de 15m
+        if(v.getInicioPausa()!=null && v.getFinPausa()==null){
+            monopatin.setTiempoConPausa(monopatin.getTiempoConPausa() + Duration.between(v.getInicioPausa(),v.getFin()).toSeconds());
+            //si arranco la pausa y la pauso a tiempo
+        } else if (v.getInicioPausa()!=null && v.getFinPausa()!=null) {
+            monopatin.setTiempoConPausa(Duration.between(v.getInicioPausa(),v.getFinPausa()).toSeconds());
+            //si no puso pausa
+        }
+        /*else if (v.getInicioPausa()!=null && v.getFinPausa()!=null) {}*/
+        monopatinClient.update(v.getMonopatinId(), monopatin);
+    }
+    private void enviarAFacuturacion(Viaje v){
+        FacturaDTO facturaDTO = new FacturaDTO();
+        facturaDTO.setViajeId(v.getId());
+        facturaDTO.setUsuarioId(v.getUsuarioId());
+        facturaDTO.setMontoCobrado(v.getPrecio());
+        facturaClient.createFactura(facturaDTO);
     }
 
 }

@@ -3,11 +3,9 @@ package com.microservice.monopatin.service.implementation;
 import com.microservice.monopatin.persistence.entity.Monopatin;
 import com.microservice.monopatin.persistence.repository.MonopatinRepo;
 import com.microservice.monopatin.presentation.dto.MonopatinCreateDTO;
-import com.microservice.monopatin.presentation.dto.ParadaResponseDTO;
 import com.microservice.monopatin.service.exception.MonopatinException;
 import com.microservice.monopatin.service.http.ParadaClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +19,8 @@ public class MonopatinService {
 
     public Monopatin create(MonopatinCreateDTO monopatinDTO) {
         try{
-            //Arreglar esto TODO
-            ResponseEntity<ParadaResponseDTO> response=paradaClient.getParadaById(monopatinDTO.getParadaId());
+            //si no existe la parada rompe y va al throw
+            paradaClient.getParadaById(monopatinDTO.getParadaId());
 
             Monopatin m = new Monopatin(monopatinDTO);
             return monopatinRepo.save(m);

@@ -1,6 +1,8 @@
 package com.microservice.administracion.persistence.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,12 +16,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Facturacion {
+public class Tarifa {
     @Id
-    private Long id; // en realidad la PK deberia ser usuarioId+viajeId TODO
-    private Long usuarioId;
-    private Long viajeId;
-    private Double montoCobrado;
-    private LocalDate fechaFacturacion;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Double precio;
+    private Double extra;
+    private LocalDate fechaVigencia;
 }

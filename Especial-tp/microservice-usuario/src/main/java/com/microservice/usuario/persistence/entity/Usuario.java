@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -29,7 +28,6 @@ public class Usuario {
     @Column(name = "fecha_de_alta")
     private LocalDate fechaDeAlta;
     private String rol;
-    private Boolean ban; //BAN o no
-    @ManyToMany
-    private List<Cuenta> cuentas;
+    private Boolean ban; //BAN o n
+
 }
