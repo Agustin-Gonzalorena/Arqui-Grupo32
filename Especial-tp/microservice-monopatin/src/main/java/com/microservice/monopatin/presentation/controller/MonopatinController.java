@@ -43,4 +43,20 @@ public class MonopatinController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.delete(id)));
     }
+
+    @GetMapping("/mantenimiento/{id}")
+    public ResponseEntity<?> mantenimiento(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.ponerEnMantenimiento(id)));
+    }
+    @GetMapping("/viajes")
+    public ResponseEntity<?> viajes(@RequestParam int cantidad,@RequestParam int anio){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.porCantidadViajes(cantidad,anio)));
+    }
+    @GetMapping("/estado")
+    public ResponseEntity<?> contarPorEstado(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.contarPorEstado()));
+    }
 }

@@ -2,12 +2,16 @@ package com.microservice.monopatin.service.implementation;
 
 import com.microservice.monopatin.persistence.entity.Monopatin;
 import com.microservice.monopatin.persistence.repository.MonopatinRepo;
+import com.microservice.monopatin.presentation.dto.EnOperacionDTO;
 import com.microservice.monopatin.presentation.dto.MonopatinCreateDTO;
+import com.microservice.monopatin.presentation.response.ApiResponse;
 import com.microservice.monopatin.service.exception.MonopatinException;
 import com.microservice.monopatin.service.http.ParadaClient;
+import com.microservice.monopatin.service.http.ViajeClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +20,8 @@ public class MonopatinService {
     private MonopatinRepo monopatinRepo;
     @Autowired
     private ParadaClient paradaClient;
+    @Autowired
+    private ViajeClient viajeClient;
 
     public Monopatin create(MonopatinCreateDTO monopatinDTO) {
         try{
@@ -60,5 +66,39 @@ public class MonopatinService {
         Monopatin m = findById(id);
         monopatinRepo.delete(m);
         return m;
+    }
+
+    public Monopatin ponerEnMantenimiento(Long id) {
+        try{
+            Monopatin m = findById(id);
+            m.setEnMantenimiento(!m.isEnMantenimiento());
+            return monopatinRepo.save(m);
+        }catch (Exception e){
+            throw new MonopatinException("Error al actualizar el monopatin");
+        }
+    }
+    public List<Monopatin> porCantidadViajes(int viajes,int anio) {
+        //pedir a los viajes los ids de los monopatines con mas de x viajes
+        try {
+
+
+            ApiResponse<List<Long>> response = viajeClient.getIdmonopatinPorViajes(viajes, anio).getBody();
+            List<Long> monopatinIds = response.getData();
+            List<Monopatin> out = new ArrayList<>();
+            for (Long monopatinId : monopatinIds) {
+                out.add(findById(monopatinId));
+            }
+            return out;
+        }catch (Exception e){
+            throw new MonopatinException("Error al consultar los monopatin");
+        }
+
+    }
+    public EnOperacionDTO contarPorEstado(){
+        try {
+            return monopatinRepo.contarPorEstado();
+        }catch (Exception e){
+            throw new MonopatinException("Error al consultar los monopatin");
+        }
     }
 }

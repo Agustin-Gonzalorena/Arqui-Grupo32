@@ -46,4 +46,11 @@ public class FacturaService {
             throw new AdministracionException("No se pudo cobrar");
         }
     }
+    public Double totalFacturado(int anio, int mesDesde, int mesHasta) {
+        try {
+            return facturacionRepo.totalFacturado(anio, mesDesde, mesHasta);
+        }catch (Exception e) {
+            throw new AdministracionException("Error al obtener el total facturado");
+        }
+    }
 }

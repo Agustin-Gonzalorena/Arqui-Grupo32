@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -96,6 +97,14 @@ public class ViajeService {
        }catch (Exception e){
            throw new ViajeException("Error al pausar el viaje");
        }
+    }
+
+    public List<Long> monopatinesIdsPorViajes(int viajes,int anio){
+        try {
+            return viajeRepo.monopatinIdsPorViajes(viajes,anio);
+        }catch (Exception e){
+            throw new ViajeException("Error al consultar los monopatines por viaje");
+        }
     }
 
     /*---------AUXILIARES------------*/

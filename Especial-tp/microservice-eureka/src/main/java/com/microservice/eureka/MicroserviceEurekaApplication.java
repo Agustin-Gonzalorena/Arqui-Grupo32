@@ -13,4 +13,5 @@ public class MicroserviceEurekaApplication {
 	}
 
 	//CAMBIAR TODOS LOS URL DE DB PARA QUE SE CREEN SOLOS LOS SCHEMAS TODO
+	//preguntar por Coneccion a la base de datos para la correccion TODO
 }

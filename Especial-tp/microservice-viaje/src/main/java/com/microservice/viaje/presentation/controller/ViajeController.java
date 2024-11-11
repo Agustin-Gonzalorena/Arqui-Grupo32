@@ -36,7 +36,10 @@ public class ViajeController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), viajeService.finPausa(id)));
     }
-
-
+    @GetMapping("/idmonopatin") //consultar TODO
+    public ResponseEntity<?> cantidad(@RequestParam int viajes,@RequestParam int anio) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), viajeService.monopatinesIdsPorViajes(viajes,anio)));
+    }
 
 }
