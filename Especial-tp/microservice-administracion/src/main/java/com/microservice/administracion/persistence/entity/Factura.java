@@ -1,6 +1,6 @@
 package com.microservice.administracion.persistence.entity;
 
-import com.microservice.administracion.presentation.dto.FacturaDTO;
+import com.microservice.administracion.presentation.dto.ViajeDTO;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -21,10 +21,10 @@ public class Factura {
     private Double montoCobrado;
     private LocalDate fecha;
 
-    public Factura(FacturaDTO facturaDTO) {
-        KeyFactura idFactura = new KeyFactura(facturaDTO.getUsuarioId(),facturaDTO.getViajeId());
+    public Factura(ViajeDTO viajeDTO,double cobrado) {
+        KeyFactura idFactura = new KeyFactura(viajeDTO.getUsuarioId(),viajeDTO.getId());
         this.idFactura = idFactura;
-        this.montoCobrado = facturaDTO.getMontoCobrado();
+        this.montoCobrado = cobrado;
         this.fecha=LocalDate.now();
     }
 }

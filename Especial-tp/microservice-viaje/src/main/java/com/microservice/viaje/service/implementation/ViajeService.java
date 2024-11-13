@@ -2,15 +2,12 @@ package com.microservice.viaje.service.implementation;
 
 import com.microservice.viaje.persistence.entity.Viaje;
 import com.microservice.viaje.persistence.repository.ViajeRepo;
-import com.microservice.viaje.presentation.dto.FacturaDTO;
 import com.microservice.viaje.presentation.dto.MonopatinResponseDTO;
-import com.microservice.viaje.presentation.dto.TarifaResponseDTO;
 import com.microservice.viaje.presentation.dto.ViajeCreateDTO;
 import com.microservice.viaje.presentation.response.ApiResponse;
 import com.microservice.viaje.service.exception.ViajeException;
-import com.microservice.viaje.service.http.FacturaClient;
+import com.microservice.viaje.service.http.AdministracionClient;
 import com.microservice.viaje.service.http.MonopatinClient;
-import com.microservice.viaje.service.http.TarifaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +23,7 @@ public class ViajeService {
     @Autowired
     private MonopatinClient monopatinClient;
     @Autowired
-    private TarifaClient tarifaClient;
-    @Autowired
-    private FacturaClient facturaClient;
+    private AdministracionClient administracionClient;
 
     public Viaje create(ViajeCreateDTO viaje) {
         try{
@@ -56,7 +51,7 @@ public class ViajeService {
             }
             Viaje v = viajeRepo.findByActivoByUsuarioId(idUsuario);
             v.setFin(LocalDateTime.now());
-            calcularPrecio(v);
+            //calcularPrecio(v);
             estimarKilometros(v);
             viajeRepo.save(v);
             actualizarMonopatin(v);
@@ -119,25 +114,6 @@ public class ViajeService {
 
     }
 
-    //en realidad deberia estar calculado en minutos pero por cuestines de prueba los segundos serian minutos
-    private void calcularPrecio(Viaje v){
-        ApiResponse<TarifaResponseDTO> response = tarifaClient.getTarifaVigente().getBody();
-        TarifaResponseDTO tarifaDTO = response.getData();
-
-        double precioNormal=tarifaDTO.getPrecio();
-        double precioExtra=tarifaDTO.getExtra();
-
-        double minutosTotales= Duration.between(v.getInicio(), v.getFin()).toSeconds();
-        double total= minutosTotales*precioNormal;
-
-        if(v.getInicioPausa()!=null && v.getFinPausa()==null){ //se paso de la pausa
-            double minutosExtras = Duration.between(v.getInicioPausa(),v.getFin()).toSeconds();
-            double totalExtra = minutosExtras*precioExtra;
-            total=total+totalExtra;
-        }
-        v.setPrecio(total);
-    }
-
     private void estimarKilometros(Viaje v){
         double tiempoTotal=Duration.between(v.getInicio(), v.getFin()).toSeconds();
         if(tiempoTotal>0 && tiempoTotal<10){
@@ -167,11 +143,11 @@ public class ViajeService {
         monopatinClient.update(v.getMonopatinId(), monopatin);
     }
     private void enviarAFacuturacion(Viaje v){
-        FacturaDTO facturaDTO = new FacturaDTO();
+        /*FacturaDTO facturaDTO = new FacturaDTO();
         facturaDTO.setViajeId(v.getId());
         facturaDTO.setUsuarioId(v.getUsuarioId());
-        facturaDTO.setMontoCobrado(v.getPrecio());
-        facturaClient.createFactura(facturaDTO);
+        facturaDTO.setMontoCobrado(v.getPrecio());*/
+        administracionClient.createFactura(v);
     }
 
 }

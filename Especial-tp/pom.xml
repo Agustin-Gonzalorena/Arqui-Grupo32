@@ -24,6 +24,8 @@
         <module>microservice-usuario</module>
         <module>microservice-viaje</module>
         <module>microservice-administracion</module>
+        <module>microservice-gateway</module>
+        <module>microservice-config</module>
     </modules>
 
     <properties>

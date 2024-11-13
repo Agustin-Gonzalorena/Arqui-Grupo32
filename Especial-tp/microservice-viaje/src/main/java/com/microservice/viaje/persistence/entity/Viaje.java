@@ -29,7 +29,6 @@ public class Viaje {
     private LocalDateTime inicioPausa;
     private LocalDateTime finPausa;
     private Double kilometros;
-    private Double precio;
 
     public Viaje(ViajeCreateDTO vDTO){
         this.usuarioId=vDTO.getUsuarioId();
@@ -39,6 +38,5 @@ public class Viaje {
         this.kilometros=0.0;
         this.inicioPausa=null;
         this.finPausa=null;
-        this.precio=0.0;
     }
 }

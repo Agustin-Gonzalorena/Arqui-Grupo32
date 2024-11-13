@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: msvc-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: administracion
+          uri: lb://msvc-administracion
+          predicates:
+            - Path=/api/tarifa/**, /api/factura/**
+        - id: monopatin
+          uri: lb://msvc-monopatin
+          predicates:
+            - Path=/api/monopatin/**
+        - id: parada
+          uri: lb://msvc-parada
+          predicates:
+            - Path=/api/parada/**
+        - id: usuario
+          uri: lb://msvc-usuario
+          predicates:
+            - Path=/api/usuario/**
+        - id: viaje
+          uri: lb://msvc-viaje
+          predicates:
+            - Path=/api/viaje/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true

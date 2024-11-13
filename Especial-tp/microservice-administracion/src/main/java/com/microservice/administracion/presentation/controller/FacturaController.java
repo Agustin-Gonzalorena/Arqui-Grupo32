@@ -1,6 +1,6 @@
 package com.microservice.administracion.presentation.controller;
 
-import com.microservice.administracion.presentation.dto.FacturaDTO;
+import com.microservice.administracion.presentation.dto.ViajeDTO;
 import com.microservice.administracion.presentation.response.ApiResponse;
 import com.microservice.administracion.service.implementation.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ public class FacturaController {
     private FacturaService facturaService;
 
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody FacturaDTO facturaDTO) {
+    public ResponseEntity<?> create(@RequestBody ViajeDTO viajeDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new ApiResponse<>(HttpStatus.OK.value(), facturaService.create(facturaDTO)));
+                .body(new ApiResponse<>(HttpStatus.OK.value(), facturaService.create(viajeDTO)));
     }
 
     @GetMapping("/total")

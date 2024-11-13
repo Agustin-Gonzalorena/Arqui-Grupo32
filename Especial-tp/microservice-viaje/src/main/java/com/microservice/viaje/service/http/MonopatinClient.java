@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "msvc-monopatin",url = "localhost:8081/api/monopatin")
+@FeignClient(name = "msvc-monopatin", path = "/api/monopatin")
 public interface MonopatinClient {
 
     @GetMapping("/{id}")

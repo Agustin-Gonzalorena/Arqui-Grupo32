@@ -18,4 +18,10 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), usuarioService.ban(id)));
     }
+
+    @GetMapping("cobrar")
+    public ResponseEntity<?> cobrar(@RequestParam("id") Long id,@RequestParam("monto") Double monto) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), usuarioService.cobrar(id,monto)));
+    }
 }

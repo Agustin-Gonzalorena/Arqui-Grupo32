@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/monopatin")
+@RequestMapping("api/monopatin")
 public class MonopatinController {
     @Autowired
     private MonopatinService monopatinService;
@@ -58,5 +58,10 @@ public class MonopatinController {
     public ResponseEntity<?> contarPorEstado(){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.contarPorEstado()));
+    }
+    @GetMapping("/reporte")
+    public ResponseEntity<?> reporteUso(@RequestParam(value = "conPausa", required = false, defaultValue = "false")boolean conPausa) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), monopatinService.reporte(conPausa)));
     }
 }

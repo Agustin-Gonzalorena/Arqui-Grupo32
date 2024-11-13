@@ -4,11 +4,14 @@ import com.microservice.monopatin.persistence.entity.Monopatin;
 import com.microservice.monopatin.persistence.repository.MonopatinRepo;
 import com.microservice.monopatin.presentation.dto.EnOperacionDTO;
 import com.microservice.monopatin.presentation.dto.MonopatinCreateDTO;
+import com.microservice.monopatin.presentation.dto.ReporteMonopatinDTO;
 import com.microservice.monopatin.presentation.response.ApiResponse;
 import com.microservice.monopatin.service.exception.MonopatinException;
 import com.microservice.monopatin.service.http.ParadaClient;
 import com.microservice.monopatin.service.http.ViajeClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -80,8 +83,6 @@ public class MonopatinService {
     public List<Monopatin> porCantidadViajes(int viajes,int anio) {
         //pedir a los viajes los ids de los monopatines con mas de x viajes
         try {
-
-
             ApiResponse<List<Long>> response = viajeClient.getIdmonopatinPorViajes(viajes, anio).getBody();
             List<Long> monopatinIds = response.getData();
             List<Monopatin> out = new ArrayList<>();
@@ -99,6 +100,14 @@ public class MonopatinService {
             return monopatinRepo.contarPorEstado();
         }catch (Exception e){
             throw new MonopatinException("Error al consultar los monopatin");
+        }
+    }
+
+    public List<ReporteMonopatinDTO> reporte(Boolean conPausa ){
+        try{
+            return monopatinRepo.reporte(conPausa);
+        } catch (Exception e) {
+            throw new MonopatinException("Error al generar el reporte");
         }
     }
 }

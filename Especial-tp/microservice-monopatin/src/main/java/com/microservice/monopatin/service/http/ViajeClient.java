@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "msvc-viaje",url = "localhost:8084/api/viaje")
+@FeignClient(name = "msvc-viaje",path = "/api/viaje")
 public interface ViajeClient {
     @GetMapping("/idmonopatin")
     ResponseEntity<ApiResponse<List<Long>>> getIdmonopatinPorViajes(@RequestParam int viajes,@RequestParam int anio);
