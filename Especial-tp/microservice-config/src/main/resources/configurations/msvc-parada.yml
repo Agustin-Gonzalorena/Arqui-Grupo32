@@ -1,0 +1,18 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: msvc-parada
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/parada
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
