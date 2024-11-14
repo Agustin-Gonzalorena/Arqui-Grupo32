@@ -14,15 +14,6 @@ public class TarifaService {
     @Autowired
     private TarifaRepo tarifaRepo;
 
-    @PostConstruct
-    public void init() {
-        Tarifa tarifa = Tarifa.builder()
-                .precio(100.00)
-                .extra(20.00)
-                .fechaVigencia(LocalDate.of(2024,8,23)).build();
-        tarifaRepo.save(tarifa);
-    }
-
     public Tarifa addTarifa(Tarifa tarifa) {
         try{
             Tarifa t1 = Tarifa.builder()

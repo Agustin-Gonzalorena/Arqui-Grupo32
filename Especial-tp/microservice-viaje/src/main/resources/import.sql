@@ -1,0 +1,2 @@
+INSERT INTO viaje_db.viaje (kilometros, fin, fin_pausa, inicio, inicio_pausa, monopatin_id, usuario_id) VALUES (10, '2024-11-14 12:23:48.405968', null, '2024-11-14 12:23:40.019180', null, 1, 1);
+INSERT INTO viaje_db.viaje (kilometros, fin, fin_pausa, inicio, inicio_pausa, monopatin_id, usuario_id) VALUES (25, '2024-11-14 12:29:15.894684', '2024-11-14 12:29:11.432128', '2024-11-14 12:28:56.778577', '2024-11-14 12:29:04.067616', 1, 1);

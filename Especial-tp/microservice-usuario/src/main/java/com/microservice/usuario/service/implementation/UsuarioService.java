@@ -3,6 +3,7 @@ package com.microservice.usuario.service.implementation;
 import com.microservice.usuario.persistence.entity.Cuenta;
 import com.microservice.usuario.persistence.entity.Usuario;
 import com.microservice.usuario.persistence.repository.UsuarioRepo;
+import com.microservice.usuario.presentation.dto.UsuarioDTO;
 import com.microservice.usuario.service.exception.UsuarioException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +18,12 @@ public class UsuarioService {
     @Autowired
     private CuentaService cuentaService;
 
-    @PostConstruct
-    public void init() {
-        Usuario usuario = Usuario.builder()
-                .email("pepito@gmail.com")
-                .password("1234")
-                .nombre("Pepito")
-                .apellido("Pepe")
-                .ban(false)
-                .rol("normal")
-                .telefono(12244442)
-                .build();
-        usuarioRepo.save(usuario);
-
-    }
-
-    public Usuario ban(Long id) {
+    public UsuarioDTO ban(Long id) {
         try {
             Usuario usuario = usuarioRepo.findById(id).get();
             usuario.setBan(!usuario.getBan());
             usuarioRepo.save(usuario);
-            return usuario;
+            return new UsuarioDTO(usuario);
         }catch (Exception e) {
             throw new UsuarioException("Error al actualizar estado del usuario");
         }

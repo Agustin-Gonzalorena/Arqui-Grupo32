@@ -23,17 +23,6 @@ public class FacturaService {
     @Autowired
     private UsuarioClient usuarioClient;
 
-    @PostConstruct
-    public void init() {
-        KeyFactura keyFactura = new KeyFactura(3L,22L);
-        Factura factura = Factura.builder()
-                .idFactura(keyFactura)
-                .fecha(LocalDate.now())
-                .montoCobrado(300.0)
-                .build();
-        facturacionRepo.save(factura);
-    }
-
     public Factura create(ViajeDTO viajeDTO) {
         try {
             double cobrado = calcularPrecio(viajeDTO);

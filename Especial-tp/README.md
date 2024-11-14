@@ -1,5 +1,9 @@
 # TP ESPECIAL
 
+### Bases de datos:
+1. Se necesita una bd mySql en el puerto 3306
+2. Se necesita una bd mongo en el puerto 27017 para el msvc-parada 
+
 ### Levantar los microservicios en orden:
 1. msvc-config
 2. msvc-eureka
