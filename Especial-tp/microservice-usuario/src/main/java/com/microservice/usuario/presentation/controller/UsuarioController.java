@@ -24,4 +24,10 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ApiResponse<>(HttpStatus.OK.value(), usuarioService.cobrar(id,monto)));
     }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> getByEmail(@PathVariable String email) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new ApiResponse<>(HttpStatus.OK.value(), usuarioService.getByEmail(email)));
+    }
 }

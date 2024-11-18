@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "41c11983-f092-4767-ae0a-1424dd06e153",
+		"name": "Tp_Integrador_grupo_32",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38850954"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Mantenimiento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mantenimiento@gmail.com\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"usuario@gmail.com\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/authenticate"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin@admin.com\",\n    \"password\":\"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/authenticate"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Respuesta consigna del tp",
+			"item": [
+				{
+					"name": "a) Reporte mantenimiento(MANTENIMIENTO)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwiZXhwIjoxNzMxOTYxMTA4LCJpYXQiOjE3MzE4NzQ3MDh9.3N-uuxCDlOKQBzcgRKkbPSQCAGb7S2aIql1FZB1d_2l-v7USSdqnYLo3PioETv1qPWprTokRYtR7DQqSB35iDQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/monopatin/reporte?conPausa=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monopatin",
+								"reporte"
+							],
+							"query": [
+								{
+									"key": "conPausa",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "b) anular cuentas(ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJleHAiOjE3MzE5NjYyODMsImlhdCI6MTczMTg3OTg4M30.A0-dTLLwe4G0l4KC1zzAgi-CZJrAiK7lEKjnMWtwoEqKbPHJr0M-hfm8fg3IKAIBSIPJTFIa74Jx-XPUM5ynmA"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/usuario/ban/4"
+					},
+					"response": []
+				},
+				{
+					"name": "c) monopatines por cant viajes(ADMIN)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/monopatin/viajes?cantidad=2&anio=2024",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"monopatin",
+								"viajes"
+							],
+							"query": [
+								{
+									"key": "cantidad",
+									"value": "2"
+								},
+								{
+									"key": "anio",
+									"value": "2024"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "d) total facturado(ADMIN)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/factura/total?anio=2024&mesDesde=1&mesHasta=12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"factura",
+								"total"
+							],
+							"query": [
+								{
+									"key": "anio",
+									"value": "2024"
+								},
+								{
+									"key": "mesDesde",
+									"value": "1"
+								},
+								{
+									"key": "mesHasta",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "e) en mantenimiento vs disponibles(ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJleHAiOjE3MzE5NjAwNDAsImlhdCI6MTczMTg3MzY0MH0.rwzNpgYRD7rkKp4epPCbe6jN0WX9psggPTLLsuRBjTF8G-WwRHE_qDqLJyHjAyRGECFmnM3JgNUA72gdAyNQtQ"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/monopatin/estado"
+					},
+					"response": []
+				},
+				{
+					"name": "f) ajustar precios(ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJleHAiOjE3MzE5NjAwNDAsImlhdCI6MTczMTg3MzY0MH0.rwzNpgYRD7rkKp4epPCbe6jN0WX9psggPTLLsuRBjTF8G-WwRHE_qDqLJyHjAyRGECFmnM3JgNUA72gdAyNQtQ"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\":200,\n    \"extra\":50,\n    \"fechaVigencia\":\"2025-11-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/tarifa"
+					},
+					"response": []
+				},
+				{
+					"name": "g) paradas cerca(USUARIO)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTYwMjI3LCJpYXQiOjE3MzE4NzM4Mjd9.vRGLFyv70raZiiQ_0j9NvydLoxuRGn60OXptODgFM2vPdJR-rmjY4cJVUxeLDJN6nQOrgeizZ0KBumLfzNfrog"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/parada/cerca?latitud=-37.340534&longitud=-59.119879",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"parada",
+								"cerca"
+							],
+							"query": [
+								{
+									"key": "latitud",
+									"value": "-37.340534"
+								},
+								{
+									"key": "longitud",
+									"value": "-59.119879"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Otras funciones",
+			"item": [
+				{
+					"name": "Monopatin",
+					"item": [
+						{
+							"name": "Crear(ADMIN)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"paradaId\":\"4c8c2d0d-e9f2-44f8-9975-cb921c3a3e84\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/api/monopatin"
+							},
+							"response": []
+						},
+						{
+							"name": "cambiar estado de mantenimiento(MANTENIMIENTO)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwiZXhwIjoxNzMxOTYwMTMwLCJpYXQiOjE3MzE4NzM3MzB9._EEeBBxplxwhHHvbV0OH0p9CuhLI8yjjfTfJr1Z1ibl_QjXWDWTqnMSn8sWsE85uSNaoUzNSbU9PhX_SHxvLjg"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/monopatin/mantenimiento/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tarifa",
+					"item": [
+						{
+							"name": "Definir precios(ADMIN)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"precio\":200,\n    \"extra\":50,\n    \"fechaVigencia\":\"2025-11-01\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/api/tarifa"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Viaje",
+					"item": [
+						{
+							"name": "Iniciar(USUARIO)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"usuarioId\":3,\n    \"monopatinId\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/api/viaje"
+							},
+							"response": []
+						},
+						{
+							"name": "Finalizar(USUARIO)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/viaje/finalizar/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Pausar(USUARIO)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/viaje/pausar/3"
+							},
+							"response": []
+						},
+						{
+							"name": "Finalizar pausa(USUARIO)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/viaje/finpausa/3"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Parada",
+					"item": [
+						{
+							"name": "Crear(ADMIN)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"latitud\":40,\n    \"longitud\":20\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8080/api/parada"
+							},
+							"response": []
+						},
+						{
+							"name": "GetAll(ABIERTO)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8080/api/parada"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

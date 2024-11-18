@@ -6,11 +6,8 @@ spring:
     name: msvc-gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
+      mvc:
+        routes:
         - id: administracion
           uri: lb://msvc-administracion
           predicates:

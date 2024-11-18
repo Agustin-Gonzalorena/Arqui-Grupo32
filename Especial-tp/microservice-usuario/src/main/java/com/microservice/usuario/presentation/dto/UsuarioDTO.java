@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Data
 public class UsuarioDTO {
@@ -14,7 +15,6 @@ public class UsuarioDTO {
     private String email;
     private int telefono;
     private LocalDate fechaDeAlta;
-    private String rol;
     private Boolean ban;
 
     public UsuarioDTO(Usuario usuario) {
@@ -25,6 +25,5 @@ public class UsuarioDTO {
         this.email = usuario.getEmail();
         this.telefono = usuario.getTelefono();
         this.fechaDeAlta = usuario.getFechaDeAlta();
-        this.rol = usuario.getRol();
     }
 }

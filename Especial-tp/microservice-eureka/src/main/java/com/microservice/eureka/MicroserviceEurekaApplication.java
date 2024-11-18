@@ -11,6 +11,4 @@ public class MicroserviceEurekaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviceEurekaApplication.class, args);
 	}
-
-	//CAMBIAR TODOS LOS URL DE DB PARA QUE SE CREEN SOLOS LOS SCHEMAS TODO
 }

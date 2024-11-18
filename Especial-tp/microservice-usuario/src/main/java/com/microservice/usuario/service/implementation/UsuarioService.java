@@ -3,6 +3,7 @@ package com.microservice.usuario.service.implementation;
 import com.microservice.usuario.persistence.entity.Cuenta;
 import com.microservice.usuario.persistence.entity.Usuario;
 import com.microservice.usuario.persistence.repository.UsuarioRepo;
+import com.microservice.usuario.presentation.dto.UsuarioAuthorityDTO;
 import com.microservice.usuario.presentation.dto.UsuarioDTO;
 import com.microservice.usuario.service.exception.UsuarioException;
 import jakarta.annotation.PostConstruct;
@@ -40,6 +41,14 @@ public class UsuarioService {
             }
         }
         return false;
+    }
+
+    public UsuarioAuthorityDTO getByEmail(String email) {
+        try {
+            return new UsuarioAuthorityDTO(usuarioRepo.findByEmail(email));
+        } catch (Exception e) {
+            throw new UsuarioException("Error al obtener el usuario");
+        }
     }
 
 }
