@@ -333,21 +333,12 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+										"token": ""
 									}
 								},
 								"method": "POST",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"usuarioId\":3,\n    \"monopatinId\":1\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8080/api/viaje"
+								"url": "http://localhost:8080/api/viaje/1"
 							},
 							"response": []
 						},
@@ -357,12 +348,12 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
 									}
 								},
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/viaje/finalizar/3"
+								"url": "http://localhost:8080/api/viaje/finalizar"
 							},
 							"response": []
 						},
@@ -372,12 +363,12 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
 									}
 								},
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/viaje/pausar/3"
+								"url": "http://localhost:8080/api/viaje/pausar"
 							},
 							"response": []
 						},
@@ -387,12 +378,12 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTY2MTUwLCJpYXQiOjE3MzE4Nzk3NTB9.qH_rFFeG_3bXZzVwsjRQxSZ7U8UVyt6oXF8PQ90mz1cij6GpXrwwlk3arS5b28lV0pAY6nyoKcDrBwcThQ-Y5g"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
 									}
 								},
 								"method": "GET",
 								"header": [],
-								"url": "http://localhost:8080/api/viaje/finpausa/3"
+								"url": "http://localhost:8080/api/viaje/finpausa"
 							},
 							"response": []
 						}

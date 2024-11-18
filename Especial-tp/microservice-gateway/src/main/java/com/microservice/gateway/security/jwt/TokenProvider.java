@@ -1,5 +1,7 @@
 package com.microservice.gateway.security.jwt;
 
+import com.microservice.gateway.security.CustomUserDetails;
+import com.microservice.gateway.security.DomainUserDetailsService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -46,10 +48,14 @@ public class TokenProvider {
         long now = ( new Date() ).getTime();
         Date validity = new Date( now + this.tokenValidityInMilliseconds );
 
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+        Long userId = userDetails.getUserId();
+
         return Jwts
                 .builder()
                 .subject( authentication.getName() )
                 .claim( AUTHORITIES_KEY, authorities )
+                .claim("userId",userId)
                 .signWith( key )
                 .expiration(validity)
                 .issuedAt( new Date() )
