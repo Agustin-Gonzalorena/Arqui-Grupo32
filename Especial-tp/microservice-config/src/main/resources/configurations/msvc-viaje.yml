@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 37753
 
 spring:
   application:
@@ -14,6 +14,13 @@ spring:
       ddl-auto: create
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+
+springdoc:
+  api-docs:
+    path: /viaje/v3/api-docs
+  swagger-ui:
+    path: /viaje/swagger-ui.html
 
 eureka:
   instance:

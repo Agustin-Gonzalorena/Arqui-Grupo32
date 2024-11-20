@@ -74,7 +74,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwiZXhwIjoxNzMxOTYxMTA4LCJpYXQiOjE3MzE4NzQ3MDh9.3N-uuxCDlOKQBzcgRKkbPSQCAGb7S2aIql1FZB1d_2l-v7USSdqnYLo3PioETv1qPWprTokRYtR7DQqSB35iDQ"
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwidXNlcklkIjoyLCJleHAiOjE3MzIxOTQyNTIsImlhdCI6MTczMjEwNzg1Mn0.olTygO89DMeWossnKkQOSmqQ3WW9MLYsKk0Ez9QbKktkctmDfoNiCwCOXLhqp_eSBFVy7KZXi4l4raFGM9139g"
 							}
 						},
 						"method": "GET",
@@ -107,10 +107,10 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJleHAiOjE3MzE5NjYyODMsImlhdCI6MTczMTg3OTg4M30.A0-dTLLwe4G0l4KC1zzAgi-CZJrAiK7lEKjnMWtwoEqKbPHJr0M-hfm8fg3IKAIBSIPJTFIa74Jx-XPUM5ynmA"
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJ1c2VySWQiOjEsImV4cCI6MTczMjE5NDI4OCwiaWF0IjoxNzMyMTA3ODg4fQ.Lj3-3-vthjbkV5Y9rQQcpFCZuoR1kEBbRn8oomtuBsG0sjHquTJDW6pMIOjlpeS2zyQYf_xNMHGnrVWHTnIHEg"
 							}
 						},
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
 						"url": "http://localhost:8080/api/usuario/ban/4"
 					},
@@ -150,6 +150,12 @@
 				{
 					"name": "d) total facturado(ADMIN)",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJ1c2VySWQiOjEsImV4cCI6MTczMjE1NDk2NiwiaWF0IjoxNzMyMDY4NTY2fQ.zgeJoZe7rwjhS4JHIT-Zliiuii8SwFyb3x5CYNcJoMEWlLghTzpy8DVKrieOZ8RU2srTH_FruYJv4cpZT_kXkA"
+							}
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -188,7 +194,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJleHAiOjE3MzE5NjAwNDAsImlhdCI6MTczMTg3MzY0MH0.rwzNpgYRD7rkKp4epPCbe6jN0WX9psggPTLLsuRBjTF8G-WwRHE_qDqLJyHjAyRGECFmnM3JgNUA72gdAyNQtQ"
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJhdXRoIjoiQURNSU4iLCJ1c2VySWQiOjEsImV4cCI6MTczMjE1NDA2OCwiaWF0IjoxNzMyMDY3NjY4fQ.ZLNeZtkXp5FZbK-pyE4-pOH3mCLM_CB7-_UVvbBnquhuPaz-_WShNQRFgZyFFJ6wqhk7HnClrtZmWKp3zXnlxw"
 							}
 						},
 						"method": "GET",
@@ -227,7 +233,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwiZXhwIjoxNzMxOTYwMjI3LCJpYXQiOjE3MzE4NzM4Mjd9.vRGLFyv70raZiiQ_0j9NvydLoxuRGn60OXptODgFM2vPdJR-rmjY4cJVUxeLDJN6nQOrgeizZ0KBumLfzNfrog"
+								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIxOTQzMjMsImlhdCI6MTczMjEwNzkyM30.5GR5ODFri3UGljsRPIDWUEwJWUDQgdhgbvRAeUZCkuQZ9iGiT73DeWfTu1tF-X0KHA2l7Y5SlKYMMKQws-OKLQ"
 							}
 						},
 						"method": "GET",
@@ -290,35 +296,12 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwiZXhwIjoxNzMxOTYwMTMwLCJpYXQiOjE3MzE4NzM3MzB9._EEeBBxplxwhHHvbV0OH0p9CuhLI8yjjfTfJr1Z1ibl_QjXWDWTqnMSn8sWsE85uSNaoUzNSbU9PhX_SHxvLjg"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW50ZW5pbWllbnRvQGdtYWlsLmNvbSIsImF1dGgiOiJNQU5URU5JTUlFTlRPIiwidXNlcklkIjoyLCJleHAiOjE3MzIxNTM1MTgsImlhdCI6MTczMjA2NzExOH0.g2YODpFAdje0VVh4MvQB_rp_oGYKcGyxPiG3XpmMxno0XyeGOcwwsjMbiP2FPON1PHxnud0dp_rJQhCf1_gyBw"
 									}
 								},
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"url": "http://localhost:8080/api/monopatin/mantenimiento/1"
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Tarifa",
-					"item": [
-						{
-							"name": "Definir precios(ADMIN)",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"precio\":200,\n    \"extra\":50,\n    \"fechaVigencia\":\"2025-11-01\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:8080/api/tarifa"
 							},
 							"response": []
 						}
@@ -333,7 +316,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": ""
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIxOTY3NTIsImlhdCI6MTczMjExMDM1Mn0.VXz0db03lPmYENSh8DiElrtaahrmJybaNcOMtg0-TPx7YwEHQZrKjyQ_LjV0ddy3pQQWdZyPFi9cN5JTRSZwiw"
 									}
 								},
 								"method": "POST",
@@ -348,10 +331,10 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIxOTY3NTIsImlhdCI6MTczMjExMDM1Mn0.VXz0db03lPmYENSh8DiElrtaahrmJybaNcOMtg0-TPx7YwEHQZrKjyQ_LjV0ddy3pQQWdZyPFi9cN5JTRSZwiw"
 									}
 								},
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"url": "http://localhost:8080/api/viaje/finalizar"
 							},
@@ -363,10 +346,10 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIxOTY3NTIsImlhdCI6MTczMjExMDM1Mn0.VXz0db03lPmYENSh8DiElrtaahrmJybaNcOMtg0-TPx7YwEHQZrKjyQ_LjV0ddy3pQQWdZyPFi9cN5JTRSZwiw"
 									}
 								},
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"url": "http://localhost:8080/api/viaje/pausar"
 							},
@@ -378,10 +361,10 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIwMjQ5ODUsImlhdCI6MTczMTkzODU4NX0.93PY79uEYJYtL_lUY1pGOyqgqz7yjU4MHz19MVEIwu8jX7opck0Mb1F_vkp842HQRWrMFvUHl0DjVWQpuFWqIw"
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3VhcmlvQGdtYWlsLmNvbSIsImF1dGgiOiJVU1VBUklPIiwidXNlcklkIjozLCJleHAiOjE3MzIxOTY3NTIsImlhdCI6MTczMjExMDM1Mn0.VXz0db03lPmYENSh8DiElrtaahrmJybaNcOMtg0-TPx7YwEHQZrKjyQ_LjV0ddy3pQQWdZyPFi9cN5JTRSZwiw"
 									}
 								},
-								"method": "GET",
+								"method": "PUT",
 								"header": [],
 								"url": "http://localhost:8080/api/viaje/finpausa"
 							},

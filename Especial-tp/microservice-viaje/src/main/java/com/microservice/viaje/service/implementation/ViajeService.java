@@ -30,7 +30,6 @@ public class ViajeService {
             ApiResponse<MonopatinResponseDTO> response = monopatinClient.getMonopatinById(monopatinId).getBody();
             MonopatinResponseDTO monopatinDTO = response.getData();
             if(monopatinDTO.isEnMantenimiento()) throw new ViajeException("El monopatin esta en mantenimiento");
-            //chequear que el usuario exista{peticion usuario} TODO
             //chequear que el monopatin no este en uso TODO
             if(viajeActivo(userId)){//chequear que no tenga un viaje activo
                 throw new Exception("El usuario no existe o tiene un viaje activo");

@@ -3,6 +3,7 @@ package com.microservice.gateway.presentation.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microservice.gateway.service.http.UsuarioClient;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.microservice.gateway.presentation.dto.LoginDTO;
@@ -30,6 +31,7 @@ public class JwtController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     @PostMapping()
+    @Operation(summary = "Iniciar sesion y obtener token")
     public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDTO request ) {
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(

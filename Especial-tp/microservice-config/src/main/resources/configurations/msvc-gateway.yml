@@ -8,26 +8,52 @@ spring:
     gateway:
       mvc:
         routes:
-        - id: administracion
-          uri: lb://msvc-administracion
-          predicates:
-            - Path=/api/tarifa/**, /api/factura/**
-        - id: monopatin
-          uri: lb://msvc-monopatin
-          predicates:
-            - Path=/api/monopatin/**
-        - id: parada
-          uri: lb://msvc-parada
-          predicates:
-            - Path=/api/parada/**
-        - id: usuario
-          uri: lb://msvc-usuario
-          predicates:
-            - Path=/api/usuario/**
-        - id: viaje
-          uri: lb://msvc-viaje
-          predicates:
-            - Path=/api/viaje/**
+          - id: administracion
+            uri: lb://msvc-administracion
+            predicates:
+              - Path=/api/tarifa/**, /api/factura/**
+
+          - id: monopatin
+            uri: lb://msvc-monopatin
+            predicates:
+              - Path=/api/monopatin/**
+
+          - id: parada
+            uri: lb://msvc-parada
+            predicates:
+              - Path=/api/parada/**
+
+          - id: usuario
+            uri: lb://msvc-usuario
+            predicates:
+              - Path=/api/usuario/**
+
+          - id: viaje
+            uri: lb://msvc-viaje
+            predicates:
+              - Path=/api/viaje/**
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: Gateway
+      - url: http://localhost:38563/monopatin/v3/api-docs
+        name: Monopatin
+      - url: http://localhost:45615/administracion/v3/api-docs
+        name: Administracion
+      - url: http://localhost:46175/parada/v3/api-docs
+        name: Parada
+      - url: http://localhost:46097/usuario/v3/api-docs
+        name: Usuario
+      - url: http://localhost:37753/viaje/v3/api-docs
+        name: Viaje
+
 eureka:
   client:
     register-with-eureka: true

@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 46097
 
 spring:
   application:
@@ -16,6 +16,11 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
+springdoc:
+  api-docs:
+    path: /usuario/v3/api-docs
+  swagger-ui:
+    path: /usuario/swagger-ui.html
 
 eureka:
   instance:

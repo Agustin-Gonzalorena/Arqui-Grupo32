@@ -10,7 +10,9 @@
 3. msvc-administracion, msvc-monopatin, msvc-parada, msvc-usuario, msvc-viaje
 4. msvc-gateway
 
-### El archivo para importar en Postam y probar los endpoints se llama _POSTMAN.JSON_
+### El archivo para importar en Postam y probar los endpoints se llama _Postman-grupo32.JSON_
+
+### Swagger documentacion= http://localhost:8080/swagger-ui/index.html?urls.primaryName=Gateway#/
 
 ## Endpoints:
 

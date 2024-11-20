@@ -2,6 +2,7 @@ package com.microservice.administracion.service.implementation;
 
 import com.microservice.administracion.persistence.entity.Tarifa;
 import com.microservice.administracion.persistence.repository.TarifaRepo;
+import com.microservice.administracion.presentation.dto.TarifaDTO;
 import com.microservice.administracion.service.exception.AdministracionException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,11 @@ public class TarifaService {
     @Autowired
     private TarifaRepo tarifaRepo;
 
-    public Tarifa addTarifa(Tarifa tarifa) {
+    public TarifaDTO addTarifa(TarifaDTO tarifaDTO) {
         try{
-            Tarifa t1 = Tarifa.builder()
-                    .precio(tarifa.getPrecio())
-                    .extra(tarifa.getExtra())
-                    .fechaVigencia(tarifa.getFechaVigencia()).build();
+            Tarifa t1 = new Tarifa(tarifaDTO);
             tarifaRepo.save(t1);
-            return t1;
+            return tarifaDTO;
         } catch (Exception e) {
             throw new AdministracionException("Error al actualizar la tarifa");
         }
