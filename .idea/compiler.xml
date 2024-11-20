@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="microservice-gateway" />
+        <module name="microservice-usuario" />
+        <module name="microservice-monopatin" />
+        <module name="IntegradorTp1" />
+        <module name="Integrador_2" />
+        <module name="microservice-config" />
+        <module name="microservice-viaje" />
+        <module name="microservice-administracion" />
+        <module name="integrador3" />
+        <module name="microservice-parada" />
+        <module name="microservice-eureka" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="integrador3" options="-parameters" />
+      <module name="microservice-administracion" options="-parameters" />
+      <module name="microservice-config" options="-parameters" />
+      <module name="microservice-eureka" options="-parameters" />
+      <module name="microservice-gateway" options="-parameters" />
+      <module name="microservice-monopatin" options="-parameters" />
+      <module name="microservice-parada" options="-parameters" />
+      <module name="microservice-usuario" options="-parameters" />
+      <module name="microservice-viaje" options="-parameters" />
+    </option>
+  </component>
+</project>
