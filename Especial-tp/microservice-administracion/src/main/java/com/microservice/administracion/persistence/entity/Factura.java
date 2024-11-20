@@ -3,10 +3,7 @@ package com.microservice.administracion.persistence.entity;
 import com.microservice.administracion.presentation.dto.ViajeDTO;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -18,6 +15,7 @@ import java.time.LocalDate;
 public class Factura {
     @EmbeddedId
     private KeyFactura idFactura;
+    @Getter
     private Double montoCobrado;
     private LocalDate fecha;
 
@@ -27,4 +25,5 @@ public class Factura {
         this.montoCobrado = cobrado;
         this.fecha=LocalDate.now();
     }
+
 }
