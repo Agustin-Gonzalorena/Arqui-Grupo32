@@ -1,5 +1,6 @@
 package com.microservice.administracion.persistence.entity;
 
+import com.microservice.administracion.presentation.dto.TarifaDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,4 +24,10 @@ public class Tarifa {
     private Double precio;
     private Double extra;
     private LocalDate fechaVigencia;
+
+    public Tarifa(TarifaDTO tarifaDTO){
+        this.precio = tarifaDTO.getPrecio();
+        this.extra = tarifaDTO.getExtra();
+        this.fechaVigencia = tarifaDTO.getFechaVigencia();
+    }
 }

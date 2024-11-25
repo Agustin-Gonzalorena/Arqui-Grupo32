@@ -3,7 +3,6 @@ package com.microservice.viaje.service.implementation;
 import com.microservice.viaje.persistence.entity.Viaje;
 import com.microservice.viaje.persistence.repository.ViajeRepo;
 import com.microservice.viaje.presentation.dto.MonopatinResponseDTO;
-import com.microservice.viaje.presentation.dto.ViajeCreateDTO;
 import com.microservice.viaje.presentation.response.ApiResponse;
 import com.microservice.viaje.service.exception.ViajeException;
 import com.microservice.viaje.service.http.AdministracionClient;
@@ -25,18 +24,17 @@ public class ViajeService {
     @Autowired
     private AdministracionClient administracionClient;
 
-    public Viaje create(ViajeCreateDTO viaje) {
+    public Viaje create(Long monopatinId,Long userId) {
         try{
             //si no existe va al catch
-            ApiResponse<MonopatinResponseDTO> response = monopatinClient.getMonopatinById(viaje.getMonopatinId()).getBody();
+            ApiResponse<MonopatinResponseDTO> response = monopatinClient.getMonopatinById(monopatinId).getBody();
             MonopatinResponseDTO monopatinDTO = response.getData();
             if(monopatinDTO.isEnMantenimiento()) throw new ViajeException("El monopatin esta en mantenimiento");
-            //chequear que el usuario exista{peticion usuario} TODO
             //chequear que el monopatin no este en uso TODO
-            if(viajeActivo(viaje.getUsuarioId())){//chequear que no tenga un viaje activo
+            if(viajeActivo(userId)){//chequear que no tenga un viaje activo
                 throw new Exception("El usuario no existe o tiene un viaje activo");
             }
-            Viaje v = new Viaje(viaje);
+            Viaje v = new Viaje(monopatinId,userId);
             return viajeRepo.save(v);
         }catch(Exception e){
             throw new ViajeException("Error al crear el viaje");

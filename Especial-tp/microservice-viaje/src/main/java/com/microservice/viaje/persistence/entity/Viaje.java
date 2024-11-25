@@ -1,7 +1,6 @@
 package com.microservice.viaje.persistence.entity;
 
 
-import com.microservice.viaje.presentation.dto.ViajeCreateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,9 +29,9 @@ public class Viaje {
     private LocalDateTime finPausa;
     private Double kilometros;
 
-    public Viaje(ViajeCreateDTO vDTO){
-        this.usuarioId=vDTO.getUsuarioId();
-        this.monopatinId=vDTO.getMonopatinId();
+    public Viaje(Long monopatinId, Long usuarioId){
+        this.usuarioId=usuarioId;
+        this.monopatinId=monopatinId;
         this.inicio=LocalDateTime.now();
         this.fin=this.inicio;
         this.kilometros=0.0;

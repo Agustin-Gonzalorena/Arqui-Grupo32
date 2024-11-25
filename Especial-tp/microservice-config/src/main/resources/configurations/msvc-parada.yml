@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 46175
 
 spring:
   application:
@@ -7,6 +7,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/parada
+
+springdoc:
+  api-docs:
+    path: /parada/v3/api-docs
+  swagger-ui:
+    path: /parada/swagger-ui.html
 
 eureka:
   instance:
